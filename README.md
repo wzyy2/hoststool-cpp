@@ -1,2 +1,6 @@
-# Hoststool-C-
-C++/Qt5  port of huhamhire-hosts
+###################
+Hoststool-c++
+###################
+
+Introduction
+============
