@@ -7,7 +7,7 @@
  */
 QSubMakeHosts::QSubMakeHosts(QDialogUI *parent) : QThread(parent)
 {
-//    QtCore.QThread.__init__(self, parent)
+    //    QtCore.QThread.__init__(self, parent)
     make_host_ = new MakeHosts(parent->make_cfg_, parent->hostname_,
                                parent->custom_, parent->make_path_,
                                parent->make_mode_, parent->sys_eol_);

@@ -134,7 +134,7 @@ void RetrieveData::get_host(int part_id, int mod_id, QString &mod_name, QList<st
     QSqlQuery query(conn);
     char a[100];
     sprintf(a, "SELECT part_name FROM parts "
-            "WHERE part_id=%d;", part_id);
+               "WHERE part_id=%d;", part_id);
     query.exec(a);
     if(query.first()){
         part_name = query.value(0).toString();
@@ -143,7 +143,7 @@ void RetrieveData::get_host(int part_id, int mod_id, QString &mod_name, QList<st
     }
 
     sprintf(a, "SELECT ip, host FROM %s "
-            "WHERE cate=%d;", part_name.toStdString().c_str(), mod_id);
+               "WHERE cate=%d;", part_name.toStdString().c_str(), mod_id);
     query.exec(a);
     while(query.next()){
         std::map<QString, QString> a;
@@ -155,7 +155,7 @@ void RetrieveData::get_host(int part_id, int mod_id, QString &mod_name, QList<st
     }
 
     sprintf(a, "SELECT mod_name FROM modules "
-            "WHERE part_id=%d AND mod_id=%d;", part_id, mod_id);
+               "WHERE part_id=%d AND mod_id=%d;", part_id, mod_id);
     query.exec(a);
     if(query.first()){
         mod_name = query.value(0).toString();
@@ -186,7 +186,7 @@ void RetrieveData::get_choice(bool flag_v6, QList<QList<QVariant> > &modules,
 
     QSqlQuery query(conn);
     sprintf(a, "SELECT * FROM modules "
-            "WHERE part_id IN (%d, %d, %d);", ch_parts[0], ch_parts[1], ch_parts[2]);
+               "WHERE part_id IN (%d, %d, %d);", ch_parts[0], ch_parts[1], ch_parts[2]);
     query.exec(a);
     while(query.next()){
         QList<QVariant> a;
@@ -198,7 +198,7 @@ void RetrieveData::get_choice(bool flag_v6, QList<QList<QVariant> > &modules,
     }
 
     sprintf(a, "SELECT part_id, part_default FROM parts "
-            "WHERE part_id IN (%d, %d, %d);", ch_parts[0], ch_parts[1], ch_parts[2]);
+               "WHERE part_id IN (%d, %d, %d);", ch_parts[0], ch_parts[1], ch_parts[2]);
     query.exec(a);
     while(query.next()){
         defaults[query.value(0).toInt()] = get_ids(query.value(1).toInt());
@@ -206,7 +206,7 @@ void RetrieveData::get_choice(bool flag_v6, QList<QList<QVariant> > &modules,
     slices.push_back(0);
     for(int i=0; i<3; i++){
         sprintf(a, "SELECT COUNT(mod_id) FROM modules "
-                "WHERE part_id=%d;", ch_parts[i]);
+                   "WHERE part_id=%d;", ch_parts[i]);
         query.exec(a);
         if(query.first()){
             slices.push_back(query.value(0).toInt());
@@ -233,7 +233,7 @@ bool RetrieveData::chk_mutex(int part_id, int mod_cfg)
     }
     QSqlQuery query(conn);
     sprintf(a, "SELECT mod_id, mutex FROM modules"
-            "WHERE part_id=%d;", part_id);
+               "WHERE part_id=%d;", part_id);
     query.exec(a);
     std::map<int, int> mutex_tuple;
     while(query.next()){

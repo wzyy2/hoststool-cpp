@@ -13,7 +13,9 @@ QDialogSlots::QDialogSlots(QWidget *parent) :
 
     //init item which don't need refresh after change languages
     this->set_platform();
-    this->set_platform_label();
+    this->mirrors_ = CommonUtil::set_network();
+    this->set_mirrors();
+    this->set_version();
 }
 
 QDialogSlots::~QDialogSlots()
@@ -109,7 +111,7 @@ void QDialogSlots::on_Lang_changed(QString lang)
         QApplication::installTranslator(&trans_);
         ui->retranslateUi(this);
     }
-    init_main();
+    refresh_main();
     check_connection();
 }
 

@@ -33,7 +33,7 @@ public slots:
     void finish_update(QJsonObject update);
     void finish_fetch(int refresh = 1, int error = 0);
     int new_version();
-    void init_main();
+    void refresh_main();
 
 protected:
 

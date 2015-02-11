@@ -112,7 +112,6 @@ QComboBox::drop-down
 
 QComboBox::down-arrow
 {
-     image: url(:/qss/img/style/down_arrow.png);
 }
 
 QGroupBox {

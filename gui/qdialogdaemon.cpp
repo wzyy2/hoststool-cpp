@@ -232,7 +232,7 @@ void QDialogDaemon::finish_make(QString time, int count)
     //due to disconnect to avoid conflict
     RetrieveData::connect_db();
     set_make_message(QApplication::translate("Util", "Notice: %1 hosts entries has \n"
-                                             "been applied in %2 secs.").arg(count).arg(time));
+                                                     "been applied in %2 secs.").arg(count).arg(time));
     set_down_progress(100,  QApplication::translate("Util","Operation Completed Successfully!"));
 
 }
@@ -274,8 +274,8 @@ void QDialogDaemon::finish_fetch(int refresh, int error)
         warning_download();
         QString msg_title("Warning");
         QString msg = QApplication::translate("Util", "Incorrect Data file!\n"
-                                      "Please use the \"Download\" key to \n"
-                                      "fetch a new data file.");
+                                                      "Please use the \"Download\" key to \n"
+                                                      "fetch a new data file.");
         set_message(msg_title, msg);
         set_conn_status(0);
     }else{
@@ -321,13 +321,14 @@ void QDialogDaemon::set_platform()
 }
 
 /**
- * @brief Set up the elements on the main dialog.
+ * @brief Refresh the elements on the main dialog after change languages.
  */
-void QDialogDaemon::init_main()
+void QDialogDaemon::refresh_main()
 {
-    this->set_version();
-    this->mirrors_ = CommonUtil::set_network();
-    this->set_mirrors();
+    if(update_.size() != 0){
+        set_label_text(ui->labelLatestData, update_["version"].toString());
+    }
+    this->set_platform_label();
     //Read data file and set function list
     try{
         RetrieveData::unpack();
@@ -342,4 +343,6 @@ void QDialogDaemon::init_main()
             this->warning_incorrect_datafile();
         }
     }
+
+
 }

@@ -59,7 +59,7 @@ void MakeHosts::make()
  */
 void MakeHosts::get_hosts(std::map<int, int> &make_cfg)  //make_cfg
 {
-     for(std::map<int, int>::iterator it=make_cfg.begin(); it!=make_cfg.end();++it){
+    for(std::map<int, int>::iterator it=make_cfg.begin(); it!=make_cfg.end();++it){
         int part_id = it->first;
         int mod_cfg = make_cfg[part_id];
         if(!RetrieveData::chk_mutex(part_id, mod_cfg))

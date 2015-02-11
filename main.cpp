@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
         QApplication::installTranslator(&(q->trans_));
         q->ui->retranslateUi(q);
     }
-    q->init_main();
+    q->refresh_main();
     //Check if current session have root privileges
     q->check_writable();
 

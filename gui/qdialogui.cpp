@@ -69,8 +69,8 @@ void QDialogUI::set_mirrors()
         ui->SelectMirror->addItem(QString::fromUtf8(""));
         ui->SelectMirror->setItemText(
                     i, QApplication::translate("Util", mirrors_[i]["tag"].toStdString().c_str()) );
-        set_platform_label();
     }
+
 }
 
 /**
@@ -78,6 +78,8 @@ void QDialogUI::set_mirrors()
  */
 void QDialogUI::set_platform_label()
 {
+    qDebug()<<QString("[%1]").arg(platform_);
+    qDebug()<<platform_;
     QString color;
     if(this->plat_flag_){
         color = "GREEN";
@@ -316,10 +318,10 @@ void QDialogUI::warning_permission()
 {
     QMessageBox::warning(this, QApplication::translate("Util", "Progress"),
                          QApplication::translate("Util", "You do not have permissions to change the \n"
-                                                 "hosts file.\n"
-                                                 "Please run this program as Administrator/root\n"
-                                                 "so it can modify your hosts file."));
-
+                                                         "hosts file.\n"
+                                                         "Please run this program as Administrator/root\n"
+                                                         "so it can modify your hosts file."));
+    exit(0);
 }
 
 /**
@@ -329,7 +331,7 @@ void QDialogUI::warning_download()
 {
     QMessageBox::warning(this, QApplication::translate("Util", "Warning"),
                          QApplication::translate("Util", "Error retrieving data from the server.\n"
-                                                 "Please try another server."));
+                                                         "Please try another server."));
 
 }
 
@@ -340,8 +342,8 @@ void QDialogUI::warning_incorrect_datafile()
 {
     QString msg_title = "Warning";
     QString msg = QApplication::translate("Util",  "Incorrect Data file!\n"
-                                          "Please use the \"Download\" key to \n"
-                                          "fetch a new data file.");
+                                                   "Please use the \"Download\" key to \n"
+                                                   "fetch a new data file.");
     set_message(msg_title, msg);
     ui->ButtonApply->setEnabled(false);
     ui->ButtonANSI->setEnabled(false);
@@ -355,8 +357,8 @@ void QDialogUI::warning_no_datafile()
 {
     QString msg_title = "Warning";
     QString msg = QApplication::translate("Util", "Data file not found!\n"
-                                          "Please use the \"Download\" key to \n"
-                                          "fetch a new data file.");
+                                                  "Please use the \"Download\" key to \n"
+                                                  "fetch a new data file.");
     set_message(msg_title, msg);
     ui->ButtonApply->setEnabled(false);
     ui->ButtonANSI->setEnabled(false);
@@ -371,10 +373,10 @@ bool QDialogUI::question_apply()
 {
     QString msg_title = QApplication::translate("Util", "Notice");
     QString msg = QApplication::translate("Util", "Are you sure you want to apply changes \n"
-                                          "to the hosts file on your system?\n\n"
-                                          "This operation could not be reverted if \n"
-                                          "you have not made a backup of your \n"
-                                          "current hosts file.");
+                                                  "to the hosts file on your system?\n\n"
+                                                  "This operation could not be reverted if \n"
+                                                  "you have not made a backup of your \n"
+                                                  "current hosts file.");
 
     int choice = QMessageBox::question(this, msg_title, msg,
                                        QMessageBox::Yes | QMessageBox::No,

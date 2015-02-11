@@ -52,9 +52,8 @@ CommonUtil::platform_struct CommonUtil::check_platform()
     ret.encode = "unix_utf8";
     ret.path = "/etc/hosts";
 #endif
-#ifdef Q_OS_ANDROI
+#ifdef Q_OS_ANDROID
     ret.system = "Android";
-    ret.encode = "unix_utf8";
     ret.path = "/etc/hosts";
 #endif
 #ifdef Q_OS_IOS
@@ -111,10 +110,15 @@ void CommonUtil::check_privileges(QString &username, bool &flag)
     }
 
     qDebug()<<"username:"<<username<<endl;
-//    if(!QFile::exists(p.path)){
-//        flag = true;
-//        return;
-//    }
+#ifdef Q_OS_ANDROID
+    if(system("su")){
+        flag = false;
+        return;
+    }
+#endif
+#ifdef Q_OS_IOS
+
+#endif
     QFile file(p.path);
     if(!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qDebug()<<"Can't open the file!"<<endl;
@@ -163,7 +167,9 @@ QString CommonUtil::timestamp_to_date(QString time)
 {
     QDateTime timestamp;
     timestamp.setTime_t(time.toInt());
-    return timestamp.toString(Qt::ISODate);
+    QString ret = timestamp.toString(Qt::ISODate);
+    ret =ret.left(ret.indexOf('T'));
+    return ret;
 }
 
 /**

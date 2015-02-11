@@ -163,7 +163,7 @@ public:
 protected:
 
 
-//slot
+    //slot
 public slots:
     void set_conn_status(int status, int mirror_id = -1);
     void set_down_progress(int progress, QString message);
