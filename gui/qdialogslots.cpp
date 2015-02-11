@@ -120,7 +120,7 @@ void QDialogSlots::on_MakeHosts_clicked()
 {
     QString filename = "hosts.bak";
     if(platform_ == "OS X"){
-        filename =   "/Users/" + filename;
+        //filename =   "/Users/" + filename;
     }
     if (!QFile::exists(filename)){
         this->info_backup();
@@ -169,7 +169,7 @@ void QDialogSlots::on_Backup_clicked()
 {
     QString filename = "hosts.bak";
     if(platform_ == "OS X"){
-        filename =   "/Users/" + filename;
+        //filename =   "/Users/" + filename;
     }
 
     if (QFile::exists(filename)){
@@ -191,7 +191,7 @@ void QDialogSlots::on_Restore_clicked()
     }
     QString filename = "hosts.bak";
     if(platform_ == "OS X"){
-        filename =   "/Users/" + filename;
+        //filename =   "/Users/" + filename;
     }
     if (!QFile::exists(filename)){
         this->info_nobackup();

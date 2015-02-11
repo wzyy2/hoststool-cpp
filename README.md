@@ -17,7 +17,7 @@ Note
 ----
 
 - The hosts list is maintained by author of [huhamhire-hosts](https://hosts.huhamhire.com/). if it's failed to access websites, please contact them.
-- Root / Jailbreak only!
+- Root / Jailbreak Only!
 - Fuck GFW！
 
 Release

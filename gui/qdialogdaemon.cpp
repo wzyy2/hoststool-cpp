@@ -94,7 +94,7 @@ QString QDialogDaemon::export_hosts()
 {
     QString filename = "hosts";
     if(platform_ == "OS X"){
-        filename = "/Users/" + filename;
+        //filename = "/Users/" + filename;
     }
     QString filepath = QFileDialog::getSaveFileName(this, QApplication::translate("Util", "Export hosts"),
                                                     filename, QApplication::translate("Util", "hosts File"));
