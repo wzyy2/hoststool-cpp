@@ -14,7 +14,9 @@ QSubChkConnection::~QSubChkConnection()
 
 }
 
-//Start operations to check the network connection with a specified server.
+/**
+ * Start operations to check the network connection with a specified server.
+ */
 void QSubChkConnection::run()
 {
     emit trigger(-1, mirror_id_);

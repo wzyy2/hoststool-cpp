@@ -1,4 +1,5 @@
 #include "retrievedata.h"
+
 #include <QFile>
 #include <QDebug>
 
@@ -12,10 +13,10 @@ QSqlDatabase RetrieveData::conn;
 QString RetrieveData::_database;
 
 static bool first = true;
-/*
+/**
  * @brief Check whether the `database` file exists or not.
- * @param database: Path to a SQLite database file.
-                `./hostslist.s3db` by default.
+ * @param database  Path to a SQLite database file.
+ * `./hostslist.s3db` by default.
  * @return A flag indicating whether the database file exists or not.
  */
 bool RetrieveData::db_exists(QString database)
@@ -23,10 +24,10 @@ bool RetrieveData::db_exists(QString database)
     return QFile::exists(database);
 }
 
-/*
+/**
  * @brief Set up connection with a SQLite :attr:`database`.
- * @param database: Path to a SQLite database file.
-                `./hostslist.s3db` by default.
+ * @param database  Path to a SQLite database file.
+ * `./hostslist.s3db` by default.
  */
 void RetrieveData::connect_db(QString database)
 {
@@ -43,7 +44,7 @@ void RetrieveData::connect_db(QString database)
     }
 }
 
-/*
+/**
  * @brief Close the connection with a SQLite database.
  */
 void RetrieveData::disconnect_db()
@@ -54,11 +55,11 @@ void RetrieveData::disconnect_db()
     }
 }
 
-/*
+/**
  * @brief Retrieve the metadata of current data file.
  * @return Metadata of current data file. The metadata here is a
-            dictionary while the `Keys` are made of `Section Name` and
-            `Values` are made of `Information` defined in the hosts data file.
+ * dictionary while the `Keys` are made of `Section Name` and
+ * `Values` are made of `Information` defined in the hosts data file.
  */
 std::map<QString, QString>  RetrieveData::get_info()
 {
@@ -71,7 +72,7 @@ std::map<QString, QString>  RetrieveData::get_info()
     return info;
 }
 
-/*
+/**
  * @brief Retrieve the head information from hosts data file.
  * @param head Lines of hosts head information.
  */
@@ -87,9 +88,9 @@ QStringList RetrieveData::get_head()
     return head;
 }
 
-/*
+/**
  * @brief Calculate the id numbers covered by config word `id_cfg`.
- * @param id_cfg: A hexadecimal config word of id selections.
+ * @param id_cfg  A hexadecimal config word of id selections.
  * @param ids ID numbers covered by config word.
  */
 QList<int> RetrieveData::get_ids(int id_cfg)
@@ -113,12 +114,12 @@ QList<int> RetrieveData::get_ids(int id_cfg)
 }
 
 
-/*
+/**
  * @brief Retrieve the hosts module specified by `mod_id` from a part
-        specified by `part_id` in the data file.
+ * specified by `part_id` in the data file.
  * @param part_id ID number of a specified part from the hosts data file.
  * @param mod_id ID number of a specified module from a specified part.
- * @param mod_name: Name of a specified module.
+ * @param mod_name  Name of a specified module.
  * @param Hosts entries from a specified module.
 
  */
@@ -163,14 +164,14 @@ void RetrieveData::get_host(int part_id, int mod_id, QString &mod_name, QList<st
     return;
 }
 
-/*
+/**
  * @brief Retrieve module selection items from the hosts data file with default
-        selection for users.
+ * selection for users.
  * @param flag_v6 A flag indicating whether to receive IPv6 hosts
-            entries or the IPv4 ones. Default by `False`.
+ * entries or the IPv4 ones. Default by `False`.
  * @return modules(`list`): Information of modules for users to select.
-    defaults(`dict`): Default selection config for selected parts.
-    slices(`list`): Numbers of modules in each part.
+ * defaults(`dict`): Default selection config for selected parts.
+ * slices(`list`): Numbers of modules in each part.
  */
 void RetrieveData::get_choice(bool flag_v6, QList<QList<QVariant> > &modules,
                               std::map<int, QList<int> > &defaults,
@@ -216,12 +217,12 @@ void RetrieveData::get_choice(bool flag_v6, QList<QList<QVariant> > &modules,
     }
 }
 
-/*
+/**
  * @brief Check if there is conflict in user selections `mod_cfg` from a
-        part specified by `part_id` in the data file.
- * @param part_id: ID number of a specified part from the hosts data file.
- * @param mod_cfg: A 16-bit config word indicating module selections of a
-            specified part.
+ * part specified by `part_id` in the data file.
+ * @param part_id  ID number of a specified part from the hosts data file.
+ * @param mod_cfg  A 16-bit config word indicating module selections of a
+ * specified part.
  * @return A flag indicating whether there is a conflict or not.
  */
 bool RetrieveData::chk_mutex(int part_id, int mod_cfg)
@@ -253,12 +254,12 @@ bool RetrieveData::chk_mutex(int part_id, int mod_cfg)
     return true;
 }
 
-/*
+/**
  * @brief Unzip the archived `datafile` to a SQLite database file `database`.
- * @param datafile: Path to the zipped data file. `./hostslist.data` by
-            default.
- * @param database: Path to a SQLite database file. `./hostslist.s3db` by
-            default.
+ * @param datafile  Path to the zipped data file. `./hostslist.data` by
+ * default.
+ * @param database  Path to a SQLite database file. `./hostslist.s3db` by
+ * default.
  */
 void RetrieveData::unpack(QString datafile, QString database)
 {
@@ -285,7 +286,7 @@ void RetrieveData::unpack(QString datafile, QString database)
     return;
 }
 
-/*
+/**
  * @brief Close connection to the database and delete the database file.
  */
 void RetrieveData::clear()

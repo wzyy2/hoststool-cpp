@@ -3,12 +3,12 @@
 #include "hoststool.h"
 #include "qdialogui.h"
 
-/*
+/**
  * QDialogDaemon class contains methods used to manage the operations while
-    modifying the hosts file of current operating system. Including methods
-    to manage operations to update data file, download data file, configure
-    hosts, make hosts file, backup hosts file, and restore backup.
-*/
+ * modifying the hosts file of current operating system. Including methods
+ * to manage operations to update data file, download data file, configure
+ * hosts, make hosts file, backup hosts file, and restore backup.
+ */
 class QDialogDaemon : public QDialogUI
 {
     Q_OBJECT

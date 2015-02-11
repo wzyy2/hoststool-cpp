@@ -1,5 +1,6 @@
 #include "qsubchkupdate.h"
 #include "util/commonutil.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -21,7 +22,9 @@ QSubChkUpdate::~QSubChkUpdate()
 
 }
 
-// Start operations to retrieve the metadata of the latest hosts data file.
+/**
+ * Start operations to retrieve the metadata of the latest hosts data file.
+ */
 void QSubChkUpdate::run()
 {   
     // create custom temporary event loop on stack

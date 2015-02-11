@@ -1,8 +1,8 @@
 #ifndef QDIALOGUI_H
 #define QDIALOGUI_H
 #include "hoststool.h"
-
 #include "ui_util_ui.h"
+
 #include <QListWidgetItem>
 #include <QDialog>
 #include <QFile>
@@ -18,7 +18,9 @@ namespace Ui {
 class Util;
 }
 
-//CursesUI class contains methods to draw the Graphical User Interface (GUI)
+/**
+ * CursesUI class contains methods to draw the Graphical User Interface (GUI)
+ */
 class QDialogUI : public QDialog
 {
     Q_OBJECT
@@ -65,55 +67,95 @@ public:
 
     QString infofile_;
     QString filename_;
-    //File name of User Customized Hosts File. Customized
-    //hosts would be able to select if this file exists. The default file
-    //name is ``custom.hosts``.
+    /**
+     * File name of User Customized Hosts File. Customized
+     * hosts would be able to select if this file exists. The default file
+     * name is ``custom.hosts``
+     */
     QString custom_;
-
-    //Dictionaries containing `tag`, `test url`, and `update url` of mirror servers.
+    /**
+     * Dictionaries containing `tag`, `test url`, and `update url` of mirror servers.
+     */
     std::vector<std::map<QString, QString> >  mirrors_;
-    //Index number of current selected server from the
+    /**
+     * Index number of current selected server from the
+     */
     int mirror_id_;
-    //Platform of current operating system.
+    /**
+     * Platform of current operating system.
+     */
     QString platform_;
-    //A flag indicating whether current operating system is supported or not.
+    /**
+     * A flag indicating whether current operating system is supported or not.
+     */
     bool plat_flag_;
-    //An flag indicating current IP version setting. The value could be 1 or 0: 1 ipv4 0 ipv4;
+    /**
+     * An flag indicating current IP version setting. The value could be 1 or 0: 1 ipv4 0 ipv4;
+     */
     int ipv_id_;
-    //Current version of local hosts data file.
+    /**
+     * Current version of local hosts data file.
+     */
     QString cur_ver_;
 
-    //Two lists with the selection of functions both for IPv4 and IPv6 environment.
+    /**
+     * Two lists with the selection of functions both for IPv4 and IPv6 environment.
+     */
     QList<QList<QVariant> > choice_[2];
-    //Two lists with integers indicating the number of function items from different parts listed in the function list.
+    /**
+     * Two lists with integers indicating the number of function items
+     * from different parts listed in the function list.
+     */
     QList<int> slices_[2];
-    //Two lists with the information of function list both for IPv4 and IPv6 environment.
+    /**
+     * Two lists with the information of function list both for IPv4 and IPv6 environment.
+     */
     QList<int> funcs_[2];
 
-    //Update information of the current data file on server.
+    /**
+     * Update information of the current data file on server.
+     */
     QJsonObject update_;
 
-    //The hostname of current operating system.
+    /**
+     * The hostname of current operating system.
+     */
     QString hostname_;
-    //The absolute path to the hosts file on current operating system.
+    /**
+     * The absolute path to the hosts file on current operating system.
+     */
     QString hosts_path_;
-    //The End-Of-Line marker. This maker could typically be one of `CR`, `LF`, or `CRLF`.
+    /**
+     * The End-Of-Line marker. This maker could typically be one of `CR`, `LF`, or `CRLF`.
+     */
     QString sys_eol_;
-    //Indicating whether the program is run with admin/root privileges.
+    /**
+     * Indicating whether the program is run with admin/root privileges.
+     */
     int writable_;
-    //An flag indicating the downloading status of current session. 1 represents data file is being downloaded.
+    /**
+     * An flag indicating the downloading status of current session.
+     * 1 represents data file is being downloaded.
+     */
     int down_flag_;
-    //Operation mode for making hosts file. The valid value could be one of `system`, `ansi`, and `utf-8`.
+    /**
+     * Operation mode for making hosts file. The valid value could be one of `system`, `ansi`, and `utf-8`.
+     */
     QString make_mode_;
-    //A set of module selection control bytes used to
-    //control whether a specified method is used or not while generate a
-    //hosts file.
+    /**
+     * A set of module selection control bytes used to
+     * control whether a specified method is used or not while generate a
+     * hosts file.
+     */
     std::map<int, int> make_cfg_;
-    //Temporary path to store generated hosts file. The
-    //default value of `make_path` is "`./hosts`".
+    /**
+     * Temporary path to store generated hosts file. The
+     * default value of `make_path` is "`./hosts`".
+     */
     QString make_path_;
-
-    //languages
+    /**
+     * languages
+     */
     QTranslator trans_;
 
     Ui::Util *ui;
@@ -127,8 +169,6 @@ public slots:
     void set_down_progress(int progress, QString message);
     void set_make_progress(QString mod_name, int mod_num);
 
-//    virtual void mouseMoveEvent(QMouseEvent *e) = 0;
-//    virtual void mousePressEvent(QMouseEvent *e) = 0;
     virtual void on_Mirror_changed(int mirr_id) = 0;
     virtual void on_IPVersion_changed(int ipv_id) = 0;
     virtual void on_Selection_changed(QListWidgetItem *item) = 0;

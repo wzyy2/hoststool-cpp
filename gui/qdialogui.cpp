@@ -29,7 +29,7 @@ QDialogUI::~QDialogUI()
 }
 
 
-/*
+/**
  *@brief Set the style sheet of main dialog.
  */
 void QDialogUI::set_stylesheet()
@@ -44,7 +44,8 @@ void QDialogUI::set_stylesheet()
         qssFile.close();
     }
 }
-/*
+
+/**
  *@brief Set optional language selection items in the SelectLang widget.
  */
 void QDialogUI::set_languages()
@@ -59,7 +60,7 @@ void QDialogUI::set_languages()
     ui->SelectLang->blockSignals(false);
 }
 
-/*
+/**
  *@brief Set optional server list.
  */
 void QDialogUI::set_mirrors()
@@ -72,7 +73,7 @@ void QDialogUI::set_mirrors()
     }
 }
 
-/*
+/**
  *@brief Set the information of the label indicating current operating system platform.
  */
 void QDialogUI::set_platform_label()
@@ -87,10 +88,10 @@ void QDialogUI::set_platform_label()
     set_label_text(ui->labelOSStat, QString("[%1]").arg(platform_));
 }
 
-/*
+/**
  * @brief Set the `color` of a `label`.
- * @param label: Label on the main dialog.
- * @param color: Color to be set on the label.
+ * @param label  Label on the main dialog.
+ * @param color  Color to be set on the label.
  */
 void QDialogUI::set_label_color(QLabel *label, QString color)
 {
@@ -107,17 +108,17 @@ void QDialogUI::set_label_color(QLabel *label, QString color)
 }
 
 
-/*
+/**
  * @brief Set the `text` of a `label`.
- * @param label: Label on the main dialog.
- * @param text: Message to be set on the label.
+ * @param label  Label on the main dialog.
+ * @param text  Message to be set on the label.
  */
 void QDialogUI::set_label_text(QLabel *label, QString text)
 {
     label->setText(QApplication::translate("Util", text.toStdString().c_str()));
 }
 
-/*
+/**
  * @brief Set the information of connection status to the current server selected.
  */
 void QDialogUI::set_conn_status(int status, int mirror_id)
@@ -141,13 +142,16 @@ void QDialogUI::set_conn_status(int status, int mirror_id)
     }
 }
 
+/**
+ * @brief Set the version.
+ */
 void QDialogUI::set_version()
 {
     QString version = QString("v") + QString(__version__) + QString(" ") + QString(__release__);
     set_label_text(ui->VersionLabel, version.toStdString().c_str());
 }
 
-/*
+/**
  * @brief Set the information of the current local data file.
  */
 void QDialogUI::set_info()
@@ -162,10 +166,10 @@ void QDialogUI::set_info()
     set_label_text(ui->labelReleaseData, build);
 }
 
-/*
+/**
  * @brief `progress` position of the progress bar with a `message`.
- * @param progress: Progress position to be set on the progress bar.
- * @param message: Message to be set on the progress bar.
+ * @param progress  Progress position to be set on the progress bar.
+ * @param message  Message to be set on the progress bar.
  */
 void QDialogUI::set_down_progress(int progress, QString message)
 {
@@ -174,9 +178,9 @@ void QDialogUI::set_down_progress(int progress, QString message)
     ui->Prog->setFormat(message);
 }
 
-/*
+/**
  * @brief Draw the function list and decide whether to load the default selection configuration or not.
- * @param new_: A flag indicating whether to load the default selection configuration or not. Default value is `0`.
+ * @param new_  A flag indicating whether to load the default selection configuration or not. Default value is `0`.
  * 0    Use user config.
  * 1    Use default config.
  */
@@ -223,9 +227,9 @@ void QDialogUI::set_func_list(int new_)
     }
 }
 
-/*
+/**
  * @brief Set a specified item to become unchecked in the function list.
- * @param item_id: Index number of a specified item in the function list.
+ * @param item_id  Index number of a specified item in the function list.
  */
 void QDialogUI::set_list_item_unchecked(int item_id)
 {
@@ -234,7 +238,7 @@ void QDialogUI::set_list_item_unchecked(int item_id)
     item->setCheckState(Qt::Unchecked);
 }
 
-/*
+/**
  * @brief Refresh the items in the function list by user settings.
  */
 void QDialogUI::refresh_func_list()
@@ -253,10 +257,10 @@ void QDialogUI::refresh_func_list()
     }
 }
 
-/*
+/**
  * @brief Start operations to show progress while making hosts file.
- * @param mod_name: Tag of a specified hosts module in current progress.
- * @param mod_num: Number of current module in the operation sequence.
+ * @param mod_name  Tag of a specified hosts module in current progress.
+ * @param mod_num  Number of current module in the operation sequence.
  */
 void QDialogUI::set_make_progress(QString mod_name, int mod_num)
 {
@@ -270,10 +274,10 @@ void QDialogUI::set_make_progress(QString mod_name, int mod_num)
     set_make_message(message);
 }
 
-/*
+/**
  * @brief Show a message box with a `message` and a `title`.
- * @param title: Title of the message box to be displayed.
- * @param message: Message in the message box.
+ * @param title  Title of the message box to be displayed.
+ * @param message  Message in the message box.
  */
 void QDialogUI::set_message(QString title, QString message)
 {
@@ -285,12 +289,12 @@ void QDialogUI::set_message(QString title, QString message)
     ui->Functionlist->addItem(item);
 }
 
-/*
+/**
  * @brief List message for the current operating progress while making the new
-    hosts file in function list.
- * @param message: Message to be displayed in the function list.
- * @param start: A flag indicating whether the message is the first one
-        in the making progress or not. Default value is `0`.
+ * hosts file in function list.
+ * @param message  Message to be displayed in the function list.
+ * @param start  A flag indicating whether the message is the first one
+ * in the making progress or not. Default value is `0`.
  */
 void QDialogUI::set_make_message( QString message, int start)
 {
@@ -305,7 +309,7 @@ void QDialogUI::set_make_message( QString message, int start)
     ui->Functionlist->addItem(item);
 }
 
-/*
+/**
  * @brief Show permission error warning message box.
  */
 void QDialogUI::warning_permission()
@@ -318,7 +322,7 @@ void QDialogUI::warning_permission()
 
 }
 
-/*
+/**
  * @brief Show download error warning message box.
  */
 void QDialogUI::warning_download()
@@ -329,7 +333,7 @@ void QDialogUI::warning_download()
 
 }
 
-/*
+/**
  * @brief Show incorrect data file warning message box.
  */
 void QDialogUI::warning_incorrect_datafile()
@@ -344,7 +348,7 @@ void QDialogUI::warning_incorrect_datafile()
     ui->ButtonUTF->setEnabled(false);
 }
 
-/*
+/**
  * @brief Show no data file warning message box.
  */
 void QDialogUI::warning_no_datafile()
@@ -359,7 +363,7 @@ void QDialogUI::warning_no_datafile()
     ui->ButtonUTF->setEnabled(false);
 }
 
-/*
+/**
  * @brief Show confirm question message box before applying hosts file.
  * @return A flag indicating whether user has accepted to continue the operations or not.
  */
@@ -382,7 +386,7 @@ bool QDialogUI::question_apply()
         return false;
 }
 
-/*
+/**
  * @brief Draw data file is up-to-date message box.
  */
 void QDialogUI::info_uptodate()
@@ -391,7 +395,7 @@ void QDialogUI::info_uptodate()
                          QApplication::translate("Util", "Data file is up-to-date."));
 }
 
-/*
+/**
  * @brief Draw operation complete message box.
  */
 void QDialogUI::info_complete()
@@ -400,7 +404,7 @@ void QDialogUI::info_complete()
                          QApplication::translate("Util", "Operation completed."));
 }
 
-/*
+/**
  * @brief Draw no backup message box.
  */
 void QDialogUI::info_nobackup()
@@ -409,7 +413,7 @@ void QDialogUI::info_nobackup()
                          QApplication::translate("Util", "No backup found."));
 }
 
-/*
+/**
  * @brief Draw no backup message box.
  */
 void QDialogUI::info_backup()
@@ -418,7 +422,7 @@ void QDialogUI::info_backup()
                          QApplication::translate("Util", "Backup before apply changes."));
 }
 
-/*
+/**
  * @brief Set button status while making hosts operations started.
  */
 void QDialogUI::set_make_start_btns()
@@ -433,7 +437,7 @@ void QDialogUI::set_make_start_btns()
     ui->ButtonExit->setEnabled(false);
 }
 
-/*
+/**
  * @brief Set button status while making hosts operations finished.
  */
 void QDialogUI::set_make_finish_btns()
@@ -448,7 +452,7 @@ void QDialogUI::set_make_finish_btns()
     ui->ButtonExit->setEnabled(true);
 }
 
-/*
+/**
  * @brief Set button status while `CheckUpdate` button clicked.
  */
 void QDialogUI::set_update_click_btns()
@@ -458,7 +462,7 @@ void QDialogUI::set_update_click_btns()
     ui->ButtonUTF->setEnabled(true);
 }
 
-/*
+/**
  * @brief Set button status while operations to check update of hosts data file started.
  */
 void QDialogUI::set_update_start_btns()
@@ -468,9 +472,9 @@ void QDialogUI::set_update_start_btns()
     ui->ButtonUpdate->setEnabled(false);
 }
 
-/*
+/**
  * @brief Set button status while operations to check update of hosts data file
-        finished.
+ * finished.
  */
 void QDialogUI::set_update_finish_btns()
 {
@@ -479,7 +483,7 @@ void QDialogUI::set_update_finish_btns()
     ui->ButtonUpdate->setEnabled(true);
 }
 
-/*
+/**
  * @brief Set button status while `FetchUpdate` button clicked.
  */
 void QDialogUI::set_fetch_click_btns()
@@ -490,9 +494,9 @@ void QDialogUI::set_fetch_click_btns()
     ui->ButtonUTF->setEnabled(false);
 }
 
-/*
+/**
  * @brief Set button status while operations to retrieve hosts data file
-        started.
+ * started.
  */
 void QDialogUI::set_fetch_start_btns()
 {
@@ -505,11 +509,11 @@ void QDialogUI::set_fetch_start_btns()
     ui->ButtonExit->setEnabled(false);
 }
 
-/*
+/**
  * @brief Set button status while operations to retrieve hosts data file
-        finished.
- * @param A flag indicating if error occurs while retrieving hosts
-            data file from the server.
+ * finished.
+ * @param error A flag indicating if error occurs while retrieving hosts
+ * data file from the server.
  */
 void QDialogUI::set_fetch_finish_btns(int error)
 {

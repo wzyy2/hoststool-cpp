@@ -1,14 +1,14 @@
 #include "qdialogdaemon.h"
-#include "util/commonutil.h"
 #include "qsubchkconnection.h"
 #include "qsubchkupdate.h"
-#include "ui_util_ui.h"
 #include "qsubfetchupdate.h"
+#include "qsubmakehosts.h"
+#include "util/commonutil.h"
 #include "util/retrievedata.h"
+
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonParseError>
-#include "qsubmakehosts.h"
 #include <QFileDialog>
 
 QDialogDaemon::QDialogDaemon(QWidget *parent) :
@@ -22,7 +22,7 @@ QDialogDaemon::~QDialogDaemon()
 
 }
 
-/*
+/**
  * @brief Check if current session is ran with root privileges.
  */
 void QDialogDaemon::check_writable()
@@ -35,7 +35,7 @@ void QDialogDaemon::check_writable()
         warning_permission();
 }
 
-/*
+/**
  * @brief Operations to check the connection to current server.
  */
 void QDialogDaemon::check_connection()
@@ -45,7 +45,7 @@ void QDialogDaemon::check_connection()
     thread->start();
 }
 
-/*
+/**
  * @brief Retrieve the metadata of the latest data file from a server.
  */
 void QDialogDaemon::check_update()
@@ -57,7 +57,7 @@ void QDialogDaemon::check_update()
     thread->start();
 }
 
-/*
+/**
  * @brief Retrieve a new hosts data file from a server.
  */
 void QDialogDaemon::fetch_update()
@@ -69,9 +69,9 @@ void QDialogDaemon::fetch_update()
     thread->start();
 }
 
-/*
+/**
  * @brief Decide whether to retrieve a new data file from server or not after
-      checking update information from a mirror.
+ * checking update information from a mirror.
  */
 void QDialogDaemon::fetch_update_after_check()
 {
@@ -85,9 +85,9 @@ void QDialogDaemon::fetch_update_after_check()
     }
 }
 
-/*
+/**
  * @brief Display the export dialog and get the path to save the exported hosts
-      file.
+ * file.
  * @return Path to export a hosts file.
  */
 QString QDialogDaemon::export_hosts()
@@ -101,11 +101,11 @@ QString QDialogDaemon::export_hosts()
     return filepath;
 }
 
-/*
+/**
  * @brief Make a new hosts file for current system.
- * @param mode: Operation mode for making hosts file. The valid value
-          could be one of `system`, `ansi`, and `utf-8`.
-          Default by `system`.
+ * @param mode   Operation mode for making hosts file. The valid value
+ * could be one of `system`, `ansi`, and `utf-8`.
+ * Default by `system`.
  */
 void QDialogDaemon::make_hosts(QString mode)
 {
@@ -123,7 +123,7 @@ void QDialogDaemon::make_hosts(QString mode)
     thread->start();
 }
 
-/*
+/**
  * @brief Move hosts file to the system path after making.c
  */
 void QDialogDaemon::move_hosts()
@@ -143,12 +143,11 @@ void QDialogDaemon::move_hosts()
     info_complete();
 }
 
-/*
+/**
  * @brief Generate the module configuration byte words by the selection from
-    function list on the main dialog.
-
- * @param mode: Operation mode for making hosts file. The valid value
-        could be one of `system`, `ansi`, and `utf-8`.
+ * function list on the main dialog.
+ * @param mode  Operation mode for making hosts file. The valid value
+ * could be one of `system`, `ansi`, and `utf-8`.
  */
 void QDialogDaemon::set_config_bytes(QString mode)
 {
@@ -194,12 +193,12 @@ void QDialogDaemon::set_config_bytes(QString mode)
 }
 
 
-/*
+/**
  * @brief Reload the data file information and show them on the main dialog. The
-    information here includes both metadata and hosts module info from the
-    data file.
- * @param refresh: A flag indicating whether the information on main
-        dialog needs to be reloaded or not. The value could be `0` or `1`.
+ * information here includes both metadata and hosts module info from the
+ * data file.
+ * @param refresh   A flag indicating whether the information on main
+ * dialog needs to be reloaded or not. The value could be `0` or `1`.
  */
 void QDialogDaemon::refresh_info(int refresh)
 {
@@ -222,10 +221,10 @@ void QDialogDaemon::refresh_info(int refresh)
     }
 }
 
-/*
+/**
  * @brief Start operations after making new hosts file.
- * @param time: Total time uesd while generating the new hosts file.
- * @param count: Total number of hosts entries inserted into the new hosts file.
+ * @param time  Total time uesd while generating the new hosts file.
+ * @param count  Total number of hosts entries inserted into the new hosts file.
  */
 void QDialogDaemon::finish_make(QString time, int count)
 {
@@ -238,9 +237,9 @@ void QDialogDaemon::finish_make(QString time, int count)
 
 }
 
-/*
+/**
  * @brief Start operations after checking update.
- * @param update: Metadata of the latest hosts data file on the server.
+ * @param update  Metadata of the latest hosts data file on the server.
  */
 void QDialogDaemon::finish_update(QJsonObject update)
 {
@@ -258,12 +257,12 @@ void QDialogDaemon::finish_update(QJsonObject update)
     }
 }
 
-/*
+/**
  * @brief Start operations after downloading data file.
- * @param refresh: An flag indicating whether the downloading progress is
-        successfully finished or not. Default by 1.
- * @param error: An flag indicating whether the downloading
-          progress is successfully finished or not. Default by 0.
+ * @param refresh  An flag indicating whether the downloading progress is
+ * successfully finished or not. Default by 1.
+ * @param error  An flag indicating whether the downloading
+ * progress is successfully finished or not. Default by 0.
  */
 void QDialogDaemon::finish_fetch(int refresh, int error)
 {
@@ -287,7 +286,7 @@ void QDialogDaemon::finish_fetch(int refresh, int error)
     set_fetch_finish_btns(error);
 }
 
-/*
+/**
  * @brief Compare version of local data file to the version from the server.
  * @return  A flag indicating whether the local data file is up-to-date or not.
  */
@@ -305,7 +304,7 @@ int QDialogDaemon::new_version( )
     return 0;
 }
 
-/*
+/**
  * @brief Set the information of current operating system platform.
  */
 void QDialogDaemon::set_platform()
@@ -321,7 +320,7 @@ void QDialogDaemon::set_platform()
         sys_eol_ = "\n";
 }
 
-/*
+/**
  * @brief Set up the elements on the main dialog.
  */
 void QDialogDaemon::init_main()

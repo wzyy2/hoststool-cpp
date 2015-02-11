@@ -3,7 +3,9 @@
 #include "hoststool.h"
 
 
-//CommonUtil contains a set of basic tools for Hosts Setup Utility to use.
+/**
+ * CommonUtil contains a set of basic tools for Hosts Setup Utility to use.
+ */
 namespace CommonUtil {
 
 int check_connection(QString link);

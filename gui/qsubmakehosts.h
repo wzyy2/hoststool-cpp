@@ -2,13 +2,16 @@
 #define QSUBMAKEHOSTS_H
 
 #include "hoststool.h"
-#include <QThread>
-#include <QNetworkReply>
 #include "qdialogui.h"
 #include "util/makehosts.h"
 
-//This class contains methods to make a
-//new hosts file for client.
+#include <QThread>
+#include <QNetworkReply>
+
+/**
+ * This class contains methods to make a
+ * new hosts file for client.
+ */
 class QSubMakeHosts : public QThread
 {
     Q_OBJECT

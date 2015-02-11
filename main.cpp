@@ -1,17 +1,8 @@
 #include "gui/qdialogslots.h"
+
 #include <QApplication>
 #include <QTranslator>
-#include "util/commonutil.h"
-#include "util/retrievedata.h"
 #include <QDebug>
-#include <QCoreApplication>
-#include <QByteArray>
-#include <QBitArray>
-#include <QString>
-#include <QDebug>
-#include <QFile>
-
-#include "lib/quazip/quazip.h"
 
 
 int main(int argc, char *argv[])

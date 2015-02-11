@@ -36,9 +36,9 @@ MakeHosts::~MakeHosts()
     delete hosts_file;
 }
 
-/*
+/**
  * @brief Start operations to retrieve data from the data file and make the new
-        hosts file for the current operating system.
+ * hosts file for the current operating system.
  */
 void MakeHosts::make()
 {
@@ -52,10 +52,10 @@ void MakeHosts::make()
     RetrieveData::disconnect_db();
 }
 
-/*
+/**
  * @brief Make the new hosts file by the configuration defined by `make_cfg`
-      from function list on the main dialog.
- * @param make_cfg: Module settings in byte word format.
+ * from function list on the main dialog.
+ * @param make_cfg  Module settings in byte word format.
  */
 void MakeHosts::get_hosts(std::map<int, int> &make_cfg)  //make_cfg
 {
@@ -84,7 +84,7 @@ void MakeHosts::get_hosts(std::map<int, int> &make_cfg)  //make_cfg
     }
 }
 
-/*
+/**
  * @brief Write the head part into the new hosts file.
  */
 void MakeHosts::write_head()
@@ -96,7 +96,7 @@ void MakeHosts::write_head()
     }
 }
 
-/*
+/**
  * @brief Write the information part into the new hosts file.
  */
 void MakeHosts::write_info()
@@ -117,9 +117,9 @@ void MakeHosts::write_info()
 
 }
 
-/*
+/**
  * @brief Write user customized hosts list into the hosts file if the customized
-    hosts file exists.
+ * hosts file exists.
  */
 void MakeHosts::write_customized()
 {
@@ -152,11 +152,11 @@ void MakeHosts::write_customized()
 }
 
 
-/*
+/**
  * @brief Write hosts entries :attr:`hosts` from a module named `hosts` in the
-     hosts data file.
- * @param hosts: Hosts entries from a part in the data file.
- * @param mod_name: Name of a module from the data file.
+ * hosts data file.
+ * @param hosts  Hosts entries from a part in the data file.
+ * @param mod_name  Name of a module from the data file.
  */
 void MakeHosts::write_common_mod(QList<std::map<QString, QString> > &hosts, QString mod_name)
 {
@@ -173,10 +173,10 @@ void MakeHosts::write_common_mod(QList<std::map<QString, QString> > &hosts, QStr
     hosts_file->write(("# Section End: " + mod_name + eol).toLocal8Bit());
 }
 
-/*
+/**
  * @brief Write hosts entries `hosts` from a module named `hosts` in the
-     hosts data file.
- * @param hosts: Hosts entries from a part in the data file.
+ * hosts data file.
+ * @param hosts  Hosts entries from a part in the data file.
  */
 void MakeHosts::write_localhost_mod(QList<std::map<QString, QString> > &hosts)
 {

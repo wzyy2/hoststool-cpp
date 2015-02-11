@@ -2,9 +2,9 @@
 #include "qsubchkconnection.h"
 #include "qsubchkupdate.h"
 #include "util/retrievedata.h"
-#include "ui_util_ui.h"
-#include <QDesktopServices>
 #include "util/commonutil.h"
+
+#include <QDesktopServices>
 
 QDialogSlots::QDialogSlots(QWidget *parent) :
     QDialogDaemon(parent)
@@ -21,7 +21,7 @@ QDialogSlots::~QDialogSlots()
 
 }
 
-/*
+/**
  * @brief Close this program while the reject signal is emitted.
  */
 void QDialogSlots::reject()
@@ -30,7 +30,7 @@ void QDialogSlots::reject()
     return QDialogDaemon::reject();
 }
 
-/*
+/**
  * @brief Close this program while the close signal is emitted.
  */
 bool QDialogSlots::close()
@@ -39,34 +39,9 @@ bool QDialogSlots::close()
     return QDialogDaemon::close();
 }
 
-/*
- * @brief Allow drag operations to set the new position for current cursor.
- * @param e: Current mouse event.
- */
-//void QDialogSlots::mouseMoveEvent(QMouseEvent *e)
-//{
-//    if e.buttons() & QtCore.Qt.LeftButton:
-//        try:
-//            self.move(e.globalPos() - self.dragPos)
-//        except AttributeError:
-//            pass
-//        e.accept()
-//}
-
-/*
- * @brief Allow press operation to set the new position for current dialog.
- * @param e: Current mouse event.
- */
-//void QDialogSlots::mousePressEvent(QMouseEvent *e)
-//{
-//    if e.button() == QtCore.Qt.LeftButton:
-//        self.dragPos = e.globalPos() - self.frameGeometry().topLeft()
-//        e.accept()
-//}
-
-/*
+/**
  * @brief Change the current server selection.
- * @param mirr_id: Index number of current mirror server.
+ * @param mirr_id  Index number of current mirror server.
  */
 void QDialogSlots::on_Mirror_changed(int mirror_id)
 {
@@ -74,9 +49,9 @@ void QDialogSlots::on_Mirror_changed(int mirror_id)
     check_connection();
 }
 
-/*
+/**
  * @brief Change the current IP version setting.
- * @param ipv_id: An flag indicating current IP version setting. The value could be 1 or 0.
+ * @param ipv_id  An flag indicating current IP version setting. The value could be 1 or 0.
  */
 void QDialogSlots::on_IPVersion_changed(int ipv_id)
 {
@@ -91,9 +66,9 @@ void QDialogSlots::on_IPVersion_changed(int ipv_id)
     }
 }
 
-/*
+/**
  * @brief Change the current selection of modules to be applied to hosts file.
- * @param item: Row number of the item listed in Functionlist which is
+ * @param item  Row number of the item listed in Functionlist which is
         changed by user.
  */
 void QDialogSlots::on_Selection_changed(QListWidgetItem *item)
@@ -118,9 +93,9 @@ void QDialogSlots::on_Selection_changed(QListWidgetItem *item)
     refresh_func_list();
 }
 
-/*
+/**
  * @brief Change the UI language setting.
- * @param lang: The language name which is selected by user.
+ * @param lang  The language name which is selected by user.
  */
 void QDialogSlots::on_Lang_changed(QString lang)
 {
@@ -138,7 +113,7 @@ void QDialogSlots::on_Lang_changed(QString lang)
     check_connection();
 }
 
-/*
+/**
  * @brief Start operations to make a hosts file.
  */
 void QDialogSlots::on_MakeHosts_clicked()
@@ -164,7 +139,7 @@ void QDialogSlots::on_MakeHosts_clicked()
     }
 }
 
-/*
+/**
  * @brief Export a hosts file encoded in ANSI.
  */
 void QDialogSlots::on_MakeANSI_clicked()
@@ -176,7 +151,7 @@ void QDialogSlots::on_MakeANSI_clicked()
 
 }
 
-/*
+/**
  * @brief Export a hosts file encoded in UTF-8.
  */
 void QDialogSlots::on_MakeUTF8_clicked()
@@ -187,7 +162,7 @@ void QDialogSlots::on_MakeUTF8_clicked()
     }
 }
 
-/*
+/**
  * @brief Backup the hosts file of current operating system.
  */
 void QDialogSlots::on_Backup_clicked()
@@ -205,7 +180,7 @@ void QDialogSlots::on_Backup_clicked()
 
 }
 
-/*
+/**
  * @brief Restore a previously backed up hosts file.
  */
 void QDialogSlots::on_Restore_clicked()
@@ -229,9 +204,9 @@ void QDialogSlots::on_Restore_clicked()
         info_complete();
 }
 
-/*
+/**
  * @brief Retrieve update information (metadata) of the latest data file from a
-    specified server.
+ * specified server.
  */
 void QDialogSlots::on_CheckUpdate_clicked()
 {
@@ -244,7 +219,7 @@ void QDialogSlots::on_CheckUpdate_clicked()
     }
 }
 
-/*
+/**
  * @brief Retrieve the latest hosts data file.
  */
 void QDialogSlots::on_FetchUpdate_clicked()
@@ -264,7 +239,7 @@ void QDialogSlots::on_FetchUpdate_clicked()
     }
 }
 
-/*
+/**
  * @brief Open external link in browser.
  */
 void QDialogSlots::on_LinkActivated(QString url)

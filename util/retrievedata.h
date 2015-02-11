@@ -8,11 +8,15 @@
 #include <QSqlDriver>
 
 
-//RetrieveData class contains a set of tools to retrieve information from the hosts data file.
+/**
+ * RetrieveData class contains a set of tools to retrieve information from the hosts data file.
+ */
 namespace RetrieveData
 {
 extern QSqlDatabase conn;
-//Filename of a SQLite database file.
+/**
+ * Filename of a SQLite database file.
+ */
 extern QString _database;
 
 #define DATAFILE "./hostslist.data"

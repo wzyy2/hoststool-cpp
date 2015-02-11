@@ -1,5 +1,6 @@
 #include "qsubfetchupdate.h"
 #include "util/commonutil.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -26,14 +27,18 @@ QSubFetchUpdate::~QSubFetchUpdate()
 
 }
 
-//Start operations to retrieve the new hosts data file.
+/**
+ * Start operations to retrieve the new hosts data file.
+ */
 void QSubFetchUpdate::run()
 {
     emit prog_trigger(0, QApplication::translate("Util", "Connecting..."));
     fetch_file();
 }
 
-//Retrieve the latest data file to a specified local path with a url.
+/**
+ * Retrieve the latest data file to a specified local path with a url.
+ */
 void QSubFetchUpdate::fetch_file()
 {
     // create custom temporary event loop on stack
@@ -84,7 +89,9 @@ void QSubFetchUpdate::fetch_file()
     emit finish_trigger(1, 1);
 }
 
-//Send message to the main dialog to set the progress bar.
+/**
+ * Send message to the main dialog to set the progress bar.
+ */
 void QSubFetchUpdate::set_progress(qint64 bytesReceived,qint64 bytesTotal)
 {
     float prog = 100 * bytesReceived / bytesTotal;
@@ -95,7 +102,9 @@ void QSubFetchUpdate::set_progress(qint64 bytesReceived,qint64 bytesTotal)
     emit prog_trigger(prog, text);
 }
 
-//Replace the old hosts data file with the new one.
+/**
+ * Replace the old hosts data file with the new one.
+ */
 void QSubFetchUpdate::replace_old()
 {
     if(QFile::exists(path_)){

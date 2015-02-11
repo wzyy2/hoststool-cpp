@@ -33,7 +33,7 @@
    <string>Hosts Setup Utility</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="res/util.qrc">
     <normaloff>:/icon/img/icons/ic_launcher.png</normaloff>:/icon/img/icons/ic_launcher.png</iconset>
   </property>
   <property name="locale">
@@ -99,7 +99,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copyleft (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#919191;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://github.com/wzyy2&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#929292;&quot;&gt;hosts-c++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copyleft (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#919191;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt; &amp;amp;&lt;span style=&quot; color:#919191;&quot;/&gt;&lt;a href=&quot;https://github.com/wzyy2/Hoststool-Cpp&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#919191;&quot;&gt;hosts-c++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -258,7 +258,7 @@
             <string>Backup</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_backup.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_backup_disabled.png</disabledoff>:/buttons/img/buttons/button_backup.png</iconset>
            </property>
@@ -299,7 +299,7 @@
             <string>Restore</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_restore.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_restore_disabled.png</disabledoff>:/buttons/img/buttons/button_restore.png</iconset>
            </property>
@@ -334,7 +334,7 @@
             <string>Refresh</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_update.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_update_disabled.png</disabledoff>:/buttons/img/buttons/button_update.png</iconset>
            </property>
@@ -369,7 +369,7 @@
             <string>Export</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_ansi.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_ansi_disabled.png</disabledoff>:/buttons/img/buttons/button_ansi.png</iconset>
            </property>
@@ -404,7 +404,7 @@
             <string>Export</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_utf8.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_utf8_disabled.png</disabledoff>:/buttons/img/buttons/button_utf8.png</iconset>
            </property>
@@ -442,7 +442,7 @@
             <string>Apply</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_apply.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_apply_disabled.png</disabledoff>:/buttons/img/buttons/button_apply.png</iconset>
            </property>
@@ -477,7 +477,7 @@
             <string>Exit</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_exit.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_exit_disabled.png</disabledoff>:/buttons/img/buttons/button_exit.png</iconset>
            </property>
@@ -512,7 +512,7 @@
             <string>Download</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="res/util.qrc">
              <normaloff>:/buttons/img/buttons/button_download.png</normaloff>
              <disabledoff>:/buttons/img/buttons/button_download_disabled.png</disabledoff>:/buttons/img/buttons/button_download.png</iconset>
            </property>
@@ -745,7 +745,9 @@
   <tabstop>ButtonUTF</tabstop>
   <tabstop>SelectLang</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="res/util.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>ButtonExit</sender>

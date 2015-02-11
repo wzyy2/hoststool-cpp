@@ -2,11 +2,14 @@
 #define QSUBFETCHUPDATE_H
 
 #include "hoststool.h"
-#include <QThread>
-#include <QNetworkReply>
 #include "qdialogui.h"
 
-//This class contains methods to retrieve the latest hosts data file from a server.
+#include <QThread>
+#include <QNetworkReply>
+
+/**
+ * This class contains methods to retrieve the latest hosts data file from a server.
+ */
 class QSubFetchUpdate : public QThread
 {
     Q_OBJECT

@@ -1,10 +1,10 @@
 #include "qsubmakehosts.h"
 
 
-
-
-//Initialize a new instance of this class. Retrieve configuration from
-//the main dialog to make a new hosts file.
+/**
+ * Initialize a new instance of this class. Retrieve configuration from
+ * the main dialog to make a new hosts file.
+ */
 QSubMakeHosts::QSubMakeHosts(QDialogUI *parent) : QThread(parent)
 {
 //    QtCore.QThread.__init__(self, parent)
@@ -18,8 +18,10 @@ QSubMakeHosts::~QSubMakeHosts()
     delete make_host_;
 }
 
-//@brief Start operations to retrieve data from the data file and generate new
-//hosts file.
+/**
+ * @brief Start operations to retrieve data from the data file and generate new
+ * hosts file.
+ */
 void QSubMakeHosts::run()
 {
     QDateTime start_time = QDateTime::currentDateTime();

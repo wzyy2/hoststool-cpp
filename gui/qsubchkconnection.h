@@ -1,12 +1,15 @@
 #ifndef QSUBCHKCONNECTION_H
 #define QSUBCHKCONNECTION_H
 #include "hoststool.h"
-#include <QThread>
 #include "qdialogui.h"
 
-//QSubChkConnection is a subclass of :class:`PyQt4.QtCore.QThread`. This
-//class contains methods to retrieve the metadata of the latest hosts data
-//file.
+#include <QThread>
+
+/**
+ * QSubChkConnection is a subclass of :class:`PyQt4.QtCore.QThread`. This
+ * class contains methods to retrieve the metadata of the latest hosts data
+ * file.
+ */
 class QSubChkConnection : public QThread
 {
     Q_OBJECT

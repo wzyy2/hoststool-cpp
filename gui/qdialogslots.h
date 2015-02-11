@@ -2,9 +2,11 @@
 #define QDIALOGSLOTS_H
 #include "hoststool.h"
 #include "qdialogdaemon.h"
-#include <QListWidgetItem>
-//QDialogSlots class provides `Qt slots` to deal with the `Qt signals`
-//emitted by the widgets on the main dialog operated by users.
+
+/**
+ * QDialogSlots class provides `Qt slots` to deal with the `Qt signals`
+ * emitted by the widgets on the main dialog operated by users.
+ */
 class QDialogSlots : public QDialogDaemon
 {
     Q_OBJECT
@@ -17,8 +19,6 @@ public:
     bool close();
 
 public slots:
-//    void mouseMoveEvent(QMouseEvent *e);
-//    void mousePressEvent(QMouseEvent *e);
     void on_Mirror_changed(int mirr_id);
     void on_IPVersion_changed(int ipv_id);
     void on_Selection_changed(QListWidgetItem *item);

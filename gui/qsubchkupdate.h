@@ -1,9 +1,10 @@
 #ifndef QSUBCHKUPDATE_H
 #define QSUBCHKUPDATE_H
 #include "hoststool.h"
+#include "qdialogui.h"
+
 #include <QThread>
 #include <QNetworkReply>
-#include "qdialogui.h"
 
 class QSubChkUpdate : public QThread
 {
