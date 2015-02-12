@@ -1,13 +1,14 @@
 #include "commonutil.h"
+#include "roottools.h"
 
 #include <math.h>
+#include <unistd.h>
 
 #include <QHostInfo>
 #include <QString>
 #include <QProcess>
 #include <QtNetwork>
 #include <QSettings>
-
 
 
 /**
@@ -25,7 +26,6 @@ int CommonUtil::check_connection(QString link)
     bool ret;
     ret = client->waitForConnected();
     //int ret = client->write(data);
-    qDebug("tcp_test:%d", ret?1:0);
     delete client;
     return ret?1:0;
 }
@@ -54,7 +54,7 @@ CommonUtil::platform_struct CommonUtil::check_platform()
 #endif
 #ifdef Q_OS_ANDROID
     ret.system = "Android";
-    ret.path = "/etc/hosts";
+    ret.path = "/system/etc/hosts";
 #endif
 #ifdef Q_OS_IOS
     ret.system = "IOS";
@@ -108,16 +108,15 @@ void CommonUtil::check_privileges(QString &username, bool &flag)
     }else{
         username = "unKnown";
     }
-
-    qDebug()<<"username:"<<username<<endl;
+    qDebug()<<"username:"<<username;
 #ifdef Q_OS_ANDROID
-    if(system("su")){
+    if(!RootTools::Instance()->check_root()){
         flag = false;
         return;
+    }else{
+        flag = true;
+        return;
     }
-#endif
-#ifdef Q_OS_IOS
-
 #endif
     QFile file(p.path);
     if(!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
@@ -141,13 +140,12 @@ std::vector<std::map<QString, QString> > CommonUtil::set_network(QString file_pa
     std::vector<std::map<QString, QString> > ret;
     QSettings *config = new QSettings(file_path, QSettings::IniFormat);
     QStringList group = config->childGroups();
-    qDebug()<<"group size:"<<group.size()<<endl;
+    qDebug()<<"group size:"<<group.size();
     //std::vector<std::map<QString, QString> >
     for(int i = 0; i < group.size(); i++)
     {
         std::map<QString, QString> a;
         a["tag"] = group[i];
-        qDebug()<<a["tag"];
         a["label"] = config->value(group[i] + "/label").toString();
         a["test_url"] = config->value(group[i] + "/server").toString();
         a["update"] = config->value(group[i] + "/update").toString();
@@ -240,4 +238,23 @@ QStringList CommonUtil::cut_message(QString msg, int cut)
     }
     msgs.append(msg);
     return msgs;
+}
+
+/**
+ * @brief Copys a file to a destination.
+ * @param src source
+ * @param dist destination
+ * @param remountAsRw remounts the destination as read/write before writing to it
+ */
+
+bool CommonUtil::copyFile(QString src, QString dist, bool remountAsRw)
+{
+#ifdef Q_OS_ANDROID
+    return RootTools::Instance()->copyFile(src, dist, remountAsRw);
+#else
+    if (QFile::exists(dist)){
+        QFile::remove(dist);
+    }
+    return QFile::copy(src, dist);
+#endif
 }

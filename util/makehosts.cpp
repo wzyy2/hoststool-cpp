@@ -42,14 +42,14 @@ MakeHosts::~MakeHosts()
  */
 void MakeHosts::make()
 {
-    RetrieveData::connect_db();
+    RetrieveData::Instance()->connect_db();
     make_time = QDateTime::currentDateTime();
-    hosts_file->open(QIODevice::ReadWrite);
+    hosts_file->open(QIODevice::WriteOnly);
     write_head();
     write_info();
     get_hosts(make_cfg);
     hosts_file->close();
-    RetrieveData::disconnect_db();
+    RetrieveData::Instance()->disconnect_db();
 }
 
 /**
@@ -62,15 +62,15 @@ void MakeHosts::get_hosts(std::map<int, int> &make_cfg)  //make_cfg
     for(std::map<int, int>::iterator it=make_cfg.begin(); it!=make_cfg.end();++it){
         int part_id = it->first;
         int mod_cfg = make_cfg[part_id];
-        if(!RetrieveData::chk_mutex(part_id, mod_cfg))
+        if(!RetrieveData::Instance()->chk_mutex(part_id, mod_cfg))
             return;
-        QList<int> mods = RetrieveData::get_ids(mod_cfg);
+        QList<int> mods = RetrieveData::Instance()->get_ids(mod_cfg);
         for(int i=0; i<mods.size(); i++){
             int mod_id = mods[i];
             mod_num += 1;
             QList<std::map<QString, QString> > hosts;
             QString mod_name;
-            RetrieveData::get_host(part_id, mod_id, mod_name, hosts);
+            RetrieveData::Instance()->get_host(part_id, mod_id, mod_name, hosts);
             //info_trigger.emit(mod_name, self.mod_num)
             if(part_id == 0x02){
                 qDebug()<<"localhost mod_id: "<<mod_id;
@@ -89,7 +89,7 @@ void MakeHosts::get_hosts(std::map<int, int> &make_cfg)  //make_cfg
  */
 void MakeHosts::write_head()
 {
-    QStringList ret = RetrieveData::get_head();
+    QStringList ret = RetrieveData::Instance()->get_head();
     for(int i=0; i<ret.size(); i++){
         QString head_str = ret[i];
         hosts_file->write((head_str + eol).toLocal8Bit());
@@ -101,7 +101,7 @@ void MakeHosts::write_head()
  */
 void MakeHosts::write_info()
 {
-    std::map<QString, QString> info = RetrieveData::get_info();
+    std::map<QString, QString> info = RetrieveData::Instance()->get_info();
     QStringList info_lines;
     info_lines.push_back("#");
     info_lines.push_back(QString("# ") + "Version" + ": " + info["Version"]);

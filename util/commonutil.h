@@ -30,6 +30,7 @@ QString convert_size(int bufferbytes);
 
 QStringList cut_message(QString msg, int cut);
 
+bool copyFile(QString src, QString dist, bool remountAsRw = true);
 }
 
 #endif // COMMONUTIL_H

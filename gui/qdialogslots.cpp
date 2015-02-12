@@ -1,8 +1,6 @@
 #include "qdialogslots.h"
 #include "qsubchkconnection.h"
 #include "qsubchkupdate.h"
-#include "util/retrievedata.h"
-#include "util/commonutil.h"
 
 #include <QDesktopServices>
 
@@ -37,7 +35,6 @@ void QDialogSlots::reject()
  */
 bool QDialogSlots::close()
 {
-    RetrieveData::clear();
     return QDialogDaemon::close();
 }
 
@@ -59,7 +56,7 @@ void QDialogSlots::on_IPVersion_changed(int ipv_id)
 {
     if(ipv_id != ipv_id_){
         ipv_id_ = ipv_id;
-        if(!RetrieveData::db_exists()){
+        if(!redata_->db_exists()){
             warning_no_datafile();
         }else{
             set_func_list(0);
@@ -82,7 +79,7 @@ void QDialogSlots::on_Selection_changed(QListWidgetItem *item)
     }else{
         funcs_[ip_flag][func_id] = 0;
     }
-    QList<int> mutex = RetrieveData::get_ids(choice_[ip_flag][func_id][2].toInt());
+    QList<int> mutex = redata_->get_ids(choice_[ip_flag][func_id][2].toInt());
     for(int i=0; i<choice_[ip_flag].size(); i++){
         int c_id = i;
         QList<QVariant> c = choice_[ip_flag][i];
@@ -101,7 +98,7 @@ void QDialogSlots::on_Selection_changed(QListWidgetItem *item)
  */
 void QDialogSlots::on_Lang_changed(QString lang)
 {
-    qDebug()<<lang;
+    qDebug()<<"languages"<<lang;
     if(lang == "Chinese(simplified)"){
         trans_.load(":/lang/zh_CN.qm");
         QApplication::installTranslator(&trans_);
@@ -199,10 +196,7 @@ void QDialogSlots::on_Restore_clicked()
         this->info_nobackup();
         return;
     }
-    if (QFile::exists(hosts_path_)){
-        QFile::remove(hosts_path_);
-    }
-    if(QFile::copy(filename, hosts_path_))
+    if(CommonUtil::copyFile(filename, hosts_path_))
         info_complete();
 }
 

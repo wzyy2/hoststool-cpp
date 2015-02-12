@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network sql
-
+android: QT  += androidextras
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Hoststool
@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     lib/quazip/quacrc32.cpp \
     lib/quazip/quaadler32.cpp \
     lib/quazip/qioapi.cpp \
-    lib/quazip/JlCompress.cpp
+    lib/quazip/JlCompress.cpp \
+    util/roottools.cpp
 
 HEADERS  += \
     gui/qdialogui.h \
@@ -65,7 +66,8 @@ HEADERS  += \
     lib/quazip/JlCompress.h \
     lib/quazip/ioapi.h \
     lib/quazip/crypt.h \
-    hoststool.h
+    hoststool.h \
+    util/roottools.h
 
 FORMS    += \
     util_ui.ui
@@ -82,7 +84,8 @@ RESOURCES += \
 DISTFILES += \
     android/res/values/libs.xml \
     android/build.gradle \
-    android/AndroidManifest.xml
+    android/AndroidManifest.xml \
+    android/src/org/qtproject/RootHelper.java
 
 TRANSLATIONS += en_US.ts \
     zh_CN.ts
@@ -91,14 +94,12 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 INCLUDEPATH += $$PWD/
 
-DEFINES += QUAZIP_STATIC #HOSTS_TEST
+DEFINES += QUAZIP_STATIC#HOSTS_TEST
+!android:  DEFINES += HOSTS_TEST
 
 #Lib
 !win32 : LIBS += -lz
 
 win32:{
-#    LIBS += -L$$PWD/lib/zlib/lib/ -lzdll
-#    INCLUDEPATH += $$PWD/lib/zlib/include
-#    DEPENDPATH += $$PWD/lib/zlib/include
     DEFINES += WIN_ZLIB
 }

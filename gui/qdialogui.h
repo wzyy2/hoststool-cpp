@@ -2,6 +2,8 @@
 #define QDIALOGUI_H
 #include "hoststool.h"
 #include "ui_util_ui.h"
+#include "util/retrievedata.h"
+#include "util/commonutil.h"
 
 #include <QListWidgetItem>
 #include <QDialog>
@@ -157,6 +159,11 @@ public:
      * languages
      */
     QTranslator trans_;
+
+    /**
+     * a set of tools to retrieve information from the hosts data file
+     */
+    RetrieveData *redata_;
 
     Ui::Util *ui;
 

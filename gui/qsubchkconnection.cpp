@@ -11,7 +11,6 @@ QSubChkConnection::QSubChkConnection(QDialogUI *parent):
 
 QSubChkConnection::~QSubChkConnection()
 {
-
 }
 
 /**

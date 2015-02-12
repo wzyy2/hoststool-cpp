@@ -1,7 +1,5 @@
 #include "qdialogui.h"
 #include "version.h"
-#include "util/retrievedata.h"
-#include "util/commonutil.h"
 
 
 QDialogUI::QDialogUI(QWidget *parent) :
@@ -18,14 +16,17 @@ QDialogUI::QDialogUI(QWidget *parent) :
     filename_ = "hostslist.data";
     custom_ = "custom.hosts";
 
+    //Set default UI language
     ui->setupUi(this);
     this->set_stylesheet();
-    //Set default UI language
+
+    redata_ = RetrieveData::Instance();
 }
 
 QDialogUI::~QDialogUI()
 {
     delete ui;
+    RetrieveData::Destroy();
 }
 
 
@@ -78,8 +79,6 @@ void QDialogUI::set_mirrors()
  */
 void QDialogUI::set_platform_label()
 {
-    qDebug()<<QString("[%1]").arg(platform_);
-    qDebug()<<platform_;
     QString color;
     if(this->plat_flag_){
         color = "GREEN";
@@ -159,7 +158,7 @@ void QDialogUI::set_version()
 void QDialogUI::set_info()
 {
     std::map<QString, QString> info;
-    info = RetrieveData::get_info();
+    info = redata_->get_info();
     QString ver = info["Version"];
     cur_ver_ = ver;
     set_label_text(ui->labelVersionData, ver);
@@ -197,7 +196,7 @@ void QDialogUI::set_func_list(int new_)
             QList<QList<QVariant> > choice;
             std::map<int, QList<int> > defaults;
             QList<int> slices;
-            RetrieveData::get_choice(ip?true:false, choice, defaults, slices);
+            redata_->get_choice(ip?true:false, choice, defaults, slices);
             if(QFile::exists(custom_)){
                 QList<QVariant> a;
                 a.append(4);

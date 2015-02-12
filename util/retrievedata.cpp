@@ -7,12 +7,32 @@
 #include <lib/quazip/quazip.h>
 
 
-using namespace::RetrieveData;
+RetrieveData* RetrieveData::pInstance = NULL;
 
-QSqlDatabase RetrieveData::conn;
-QString RetrieveData::_database;
 
-static bool first = true;
+RetrieveData::RetrieveData(){
+    connected = false;
+}
+
+RetrieveData::~RetrieveData(){
+    clear();
+}
+
+RetrieveData* RetrieveData::Instance()
+{
+    if(pInstance == NULL)
+    {
+        pInstance = new RetrieveData();
+    }
+    return pInstance;
+}
+
+void RetrieveData::Destroy()
+{
+    delete pInstance;
+    pInstance = NULL;
+}
+
 /**
  * @brief Check whether the `database` file exists or not.
  * @param database  Path to a SQLite database file.
@@ -25,23 +45,19 @@ bool RetrieveData::db_exists(QString database)
 }
 
 /**
- * @brief Set up connection with a SQLite :attr:`database`.
+ * @brief Set up connection with a SQLite `database`.
  * @param database  Path to a SQLite database file.
  * `./hostslist.s3db` by default.
  */
 void RetrieveData::connect_db(QString database)
 {
+    if(connected)
+        return;
     _database = database;
-    if(first){
-        conn = QSqlDatabase::addDatabase("QSQLITE");
-        conn.setDatabaseName(database);
-        first = false;
-    }
-
-    if(conn.isOpen() == false)
-    {
-        conn.open();
-    }
+    conn = QSqlDatabase::addDatabase("QSQLITE");
+    conn.setDatabaseName(database);
+    conn.open();
+    connected = true;
 }
 
 /**
@@ -49,9 +65,13 @@ void RetrieveData::connect_db(QString database)
  */
 void RetrieveData::disconnect_db()
 {
-    if(conn.isOpen() == true)
-    {
-        conn.close();
+    if(connected){
+        if(conn.isOpen() == true)
+        {
+            conn.close();
+        }
+        QSqlDatabase::removeDatabase(_database);
+        connected = false;
     }
 }
 
@@ -82,7 +102,6 @@ QStringList RetrieveData::get_head()
     QSqlQuery query(conn);
     query.exec("SELECT str FROM hosts_head ORDER BY ln;");
     while(query.next()){
-        //        qDebug()<<query.value(0).toString();
         head.append(query.value(0).toString());
     }
     return head;
@@ -291,12 +310,7 @@ void RetrieveData::unpack(QString datafile, QString database)
  */
 void RetrieveData::clear()
 {
-    if(conn.isOpen() == true)
-    {
-        conn.close();
-    }
-    QSqlDatabase::removeDatabase(_database);
-    first = true;
+    disconnect_db();
 
     if(db_exists(_database))
         QFile::remove(_database);

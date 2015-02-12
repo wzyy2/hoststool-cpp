@@ -3,8 +3,6 @@
 #include "qsubchkupdate.h"
 #include "qsubfetchupdate.h"
 #include "qsubmakehosts.h"
-#include "util/commonutil.h"
-#include "util/retrievedata.h"
 
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -112,7 +110,7 @@ void QDialogDaemon::make_hosts(QString mode)
     set_make_start_btns();
     set_make_message(QApplication::translate("Util", "Building hosts file..."), 1);
     //Avoid conflict while making hosts file
-    RetrieveData::disconnect_db();
+    redata_->disconnect_db();
     make_mode_ = mode;
     set_config_bytes(mode);
 
@@ -131,13 +129,11 @@ void QDialogDaemon::move_hosts()
     QString filepath = "hosts";
     QString msg = QApplication::translate("Util", "Copying new hosts file to\n %1").arg(hosts_path_);
     set_make_message(msg);
-    if (QFile::exists(hosts_path_)){
-        QFile::remove(hosts_path_);
-    }
-    if(!QFile::copy(filepath, hosts_path_)){
+    //due to android need shell to root
+    if(!CommonUtil::copyFile(filepath, hosts_path_)){
         warning_permission();
     }
-    QFile::remove(filepath);
+    //QFile::remove(filepath);
     msg = QApplication::translate("Util", "Operation completed");
     set_make_message(msg);
     info_complete();
@@ -204,10 +200,11 @@ void QDialogDaemon::refresh_info(int refresh)
 {
     //refresh_info
     if(refresh){
-        RetrieveData::clear();
+        RetrieveData::Destroy();
+        redata_ = RetrieveData::Instance();
         try{
-            RetrieveData::unpack();
-            RetrieveData::connect_db();
+            redata_->unpack();
+            redata_->connect_db();
             this->set_func_list(1);
             this->refresh_func_list();
             this->set_info();
@@ -230,7 +227,7 @@ void QDialogDaemon::finish_make(QString time, int count)
 {
     set_make_finish_btns();
     //due to disconnect to avoid conflict
-    RetrieveData::connect_db();
+    redata_->connect_db();
     set_make_message(QApplication::translate("Util", "Notice: %1 hosts entries has \n"
                                                      "been applied in %2 secs.").arg(count).arg(time));
     set_down_progress(100,  QApplication::translate("Util","Operation Completed Successfully!"));
@@ -331,8 +328,10 @@ void QDialogDaemon::refresh_main()
     this->set_platform_label();
     //Read data file and set function list
     try{
-        RetrieveData::unpack();
-        RetrieveData::connect_db();
+        RetrieveData::Destroy();
+        redata_ = RetrieveData::Instance();
+        redata_->unpack();
+        redata_->connect_db();
         this->set_func_list(1);
         this->refresh_func_list();
         this->set_info();
