@@ -22,13 +22,19 @@ Note
 
 Release
 -------
-Android:<br>
-Attention : The hosts file supersedes remote DNS lookups, So it may have conflicts  with other tools like vpn or  fqrouter.If   happened, you can restore backup or make hosts without selecting google-apis.<br>
-注意:Hosts会和vpn,翻墙路由器等等工具冲突,造成无法访问谷歌服务的应用,如果发生了,可以恢复备份或者是取消选择google-apis.<br>
+### Android
 [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_45.png)]() 
+
+Attention :
+The hosts file supersedes remote DNS lookups, So it may have conflicts  with other tools like vpn or  fqrouter.If   happened, you can restore backup or make hosts without selecting google-apis.<br>
+注意:
+Hosts会和vpn,翻墙路由器等等工具冲突,造成无法访问谷歌服务的应用,如果发生了,可以恢复备份或者是取消选择google-apis.<br>
+
+### IOS
+
 
 LICENSE
 -------
 This project is licensed under version 3 of the GNU Lesser General Public License.
 
-![image](http://wzyy2.github.io/hoststool-cpp/data/jietu.png)
+![image](http://wzyy2.github.io/hoststool-cpp/data/jietu2.png)
