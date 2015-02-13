@@ -89,8 +89,8 @@ CommonUtil::platform_struct CommonUtil::check_platform()
 /**
  * @brief Check whether the current session has privileges to change the hosts
  * file of current operating system.
- * @param username(`str`)  Username of the user running current session.
- * @param flag(`bool`)  A flag indicating whether the current session has
+ * @param username  Username of the user running current session.
+ * @param flag   A flag indicating whether the current session has
  * write privileges to the hosts file or not.
  */
 void CommonUtil::check_privileges(QString &username, bool &flag)
