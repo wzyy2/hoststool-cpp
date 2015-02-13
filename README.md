@@ -7,6 +7,10 @@ Introduction
 hoststool-cpp is a C++/Qt5 port of  [huhamhire-hosts](https://hosts.huhamhire.com/), provides basic tools to manage the hosts file on current operating systems.
 Users could use these tool to modify the hosts to visit specified websites or services blocked by ISP/government. 
 
+
+![image](http://wzyy2.github.io/hoststool-cpp/data/jietu2.png)
+
+
 Features
 --------
 - [huhamhire-hosts's features](https://github.com/huhamhire/huhamhire-hosts)
@@ -37,4 +41,3 @@ LICENSE
 -------
 This project is licensed under version 3 of the GNU Lesser General Public License.
 
-![image](http://wzyy2.github.io/hoststool-cpp/data/jietu2.png)
