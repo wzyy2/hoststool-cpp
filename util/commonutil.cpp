@@ -194,9 +194,9 @@ QString CommonUtil::convert_size(int bufferbytes)
 
     QString a = formats[l_num] + " " + units[l_unit];
 
-    char out[120];
-    sprintf(out, a.toStdString().c_str(), size);
-    //    qDebug()<<a<<out;
+    QString out;
+    out.sprintf(a.toStdString().c_str(), size);
+
     return out;
 }
 

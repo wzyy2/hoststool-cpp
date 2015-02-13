@@ -52,7 +52,7 @@ void QSubFetchUpdate::fetch_file()
     // the HTTP request
     QUrl u(url_);
     QNetworkRequest req(u);
-    timer.start(120 * 1000); //120s
+    timer.start(600 * 1000); //600s
     QNetworkReply *reply = mgr.get(req);
 
     QObject::connect(reply, SIGNAL(downloadProgress(qint64,qint64)),
