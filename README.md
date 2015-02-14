@@ -27,14 +27,14 @@ Note
 Release
 -------
 ### Android
-[![Google Play](http://wzyy2.github.io/hoststool-cpp/data/down.png)](http://wzyy2.github.io/hoststool-cpp/data/hoststool.apk) 
+[![Google Play](http://wzyy2.github.io/hoststool-cpp/data/down2.png)](http://wzyy2.github.io/hoststool-cpp/data/hoststool.apk) 
 
 Attention :<br>
 The hosts file supersedes remote DNS lookups, So it may have conflicts  with other tools like vpn or  fqrouter.If   happened, you can restore backup or make hosts without selecting google-apis.<br>
 
 
 ### IOS
-[![Google Play](http://wzyy2.github.io/hoststool-cpp/data/down.png)](http://wzyy2.github.io/hoststool-cpp/data/hoststool.ipa) 
+[![Google Play](http://wzyy2.github.io/hoststool-cpp/data/down2.png)](http://wzyy2.github.io/hoststool-cpp/data/hoststool.ipa) 
 
 
 LICENSE
