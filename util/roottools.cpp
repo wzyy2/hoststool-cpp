@@ -12,9 +12,9 @@ RootTools::RootTools()
 
     shell_.start("su");
     shell_.waitForStarted();
+    qDebug()<<shell_.isWritable();
     shell_.waitForReadyRead(500);
 
-    qDebug()<<need_password_;
     if(need_password_){
         cmd = password_ + "\n";
         shell_.write(cmd.toStdString().c_str(), cmd.size());
@@ -148,7 +148,7 @@ QList<QStringList> RootTools::getMounts()
 
     QString cmd = "cat /proc/mounts\n";
     shell_.write(cmd.toStdString().c_str(), cmd.size());
-    shell_.waitForReadyRead();
+    shell_.waitForReadyRead(1000);
 
     QByteArray rr = shell_.readAll();
     QString ss(rr);
