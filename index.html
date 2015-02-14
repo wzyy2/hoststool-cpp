@@ -1,88 +1,83 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Hoststool-cpp : C++/Qt5  port of huhamhire-hosts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>Hoststool-cpp</title>
+    <title>Hoststool-cpp by wzyy2</title>
   </head>
 
   <body>
+    <header>
+      <div class="inner">
+        <h1>Hoststool-cpp</h1>
+        <h2>C++/Qt5  port of huhamhire-hosts</h2>
+        <a href="https://github.com/wzyy2/hoststool-cpp" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/wzyy2/hoststool-cpp">View on GitHub</a>
-
-          <h1 id="project_title">Hoststool-cpp</h1>
-          <h2 id="project_tagline">C++/Qt5  port of huhamhire-hosts</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/wzyy2/hoststool-cpp/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/wzyy2/hoststool-cpp/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="hoststool-cpp" class="anchor" href="#hoststool-cpp" aria-hidden="true"><span class="octicon octicon-link"></span></a>hoststool-cpp</h1>
 
-<h2>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+<p>改hosts应该是用google服务最简洁的办法了.<br>
+而<a href="https://hosts.huhamhire.com/">huhamhire-hosts</a>就是一款可以更新hosts到本地的工具,非常赞,主要用来不翻墙访问google服务和其他功能比如twitter等等,不过除了google服务以外,都不是能很稳定访问.<br>
+这里我简单的给他做了一个手机版的移植,求小白鼠,需要注意的是hosts可能会导致安卓手机上的谷歌服务应用无法访问,如果需要访问,可以不选google apis条目.<br>
+由于hosts是系统文件,所以是需要root或者越狱才能安装使用的.另外hosts数据是来自<a href="https://hosts.huhamhire.com/">huhamhire-hosts</a>的,如果hosts失效了的话可以联系这个作者或者等数据更新.</p>
 
-<p>hoststool-cpp is a C++/Qt5 port of  <a href="https://hosts.huhamhire.com/">huhamhire-hosts</a>, provides basic tools to manage the hosts file on current operating systems.
-Users could use these tool to modify the hosts to visit specified websites or services blocked by ISP/government. </p>
+<h3>
+<a id="android" class="anchor" href="#android" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android</h3>
 
-<h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+<p><a href="http://wzyy2.github.io/hoststool-cpp/data/hoststool.apk"><img src="http://wzyy2.github.io/hoststool-cpp/data/down2.png" alt="Google Play"></a> </p>
 
-<ul>
-<li><a href="https://github.com/huhamhire/huhamhire-hosts">huhamhire-hosts's features</a></li>
-<li>hoststool-cpp is written in C++/Qt5, can support more platforms (IOS / Android) than <a href="https://hosts.huhamhire.com/">huhamhire-hosts</a>.</li>
-</ul>
+<h3>
+<a id="ios" class="anchor" href="#ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>IOS</h3>
 
-<h2>
-<a id="note" class="anchor" href="#note" aria-hidden="true"><span class="octicon octicon-link"></span></a>Note</h2>
+<p><a href="http://wzyy2.github.io/hoststool-cpp/data/hoststool.ipa"><img src="http://wzyy2.github.io/hoststool-cpp/data/down2.png" alt="Google Play"></a> </p>
 
-<ul>
-<li>The hosts list is maintained by author of <a href="https://hosts.huhamhire.com/">huhamhire-hosts</a>. if it's failed to access websites, please contact them.</li>
-<li>Root / Jailbreak Only!</li>
-<li>Fuck GFW！</li>
-</ul>
+<p><img src="http://wzyy2.github.io/hoststool-cpp/data/jietu.png" alt="image"></p>
 
 <h2>
-<a id="release" class="anchor" href="#release" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release</h2>
+<a id="others" class="anchor" href="#others" aria-hidden="true"><span class="octicon octicon-link"></span></a>Others</h2>
 
-<p>Android:<br>
-Attention : The hosts file supersedes remote DNS lookups, So it may have conflicts  with other tools like vpn or  fqrouter.If   happened, you can restore backup or make hosts without selecting google-apis.<br>
-注意:Hosts会和vpn,翻墙路由器等等工具冲突,造成无法访问谷歌服务的应用,如果发生了,可以恢复备份或者是取消选择google-apis.<br>
-<a href=""><img src="http://developer.android.com/images/brand/en_generic_rgb_wo_45.png" alt="Google Play"></a> </p>
+<p><a href="https://github.com/wzyy2/hoststool-cpp">我是代码</a><br>
+主要是出于闲的蛋疼,和丰富祖国人民翻墙手段的目的,给<a href="https://hosts.huhamhire.com/">huhamhire-hosts</a>移植了个C++/QT5版本,理论上这样做就能跑在全系统了,主要是方便手机修改hosts.<br>
+UI是最讨厌的,qtwidgets对Mobile来说就是一堆bug....配上qss更是不能看,所以UI乱就不要吐槽了 :( <br></p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE</h2>
 
 <p>This project is licensed under version 3 of the GNU Lesser General Public License.</p>
+        </section>
 
-<p><img src="http://wzyy2.github.io/hoststool-cpp/data/jietu.png" alt="image"></p>
-      </section>
+        <aside id="sidebar">
+          <a href="https://github.com/wzyy2/hoststool-cpp/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/wzyy2/hoststool-cpp/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/wzyy2/hoststool-cpp"></a> is maintained by <a href="https://github.com/wzyy2">wzyy2</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Hoststool-cpp maintained by <a href="https://github.com/wzyy2">wzyy2</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+  
   </body>
 </html>
