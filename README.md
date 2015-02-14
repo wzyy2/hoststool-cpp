@@ -8,7 +8,7 @@ hoststool-cpp is a C++/Qt5 port of  [huhamhire-hosts](https://hosts.huhamhire.co
 Users could use these tool to modify the hosts to visit specified websites or services blocked by ISP/government. 
 
 
-![image](http://wzyy2.github.io/hoststool-cpp/data/jietu2.png)
+![image](http://wzyy2.github.io/hoststool-cpp/data/jietu.png)
 
 
 Features
@@ -20,20 +20,21 @@ Features
 Note
 ----
 
-- The hosts list is maintained by author of [huhamhire-hosts](https://hosts.huhamhire.com/). if it's failed to access websites, please contact them.
+- The hosts list is maintained by author of [huhamhire-hosts](https://hosts.huhamhire.com/). if it's failed to access websites, please contact him.
 - Root / Jailbreak Only!
 - Fuck GFW！
 
 Release
 -------
 ### Android
-[![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_45.png)]() 
+[![Google Play](http://wzyy2.github.io/hoststool-cpp/data/down.png)](http://wzyy2.github.io/hoststool-cpp/data/hoststool.apk) 
 
-Attention :
+Attention :<br>
 The hosts file supersedes remote DNS lookups, So it may have conflicts  with other tools like vpn or  fqrouter.If   happened, you can restore backup or make hosts without selecting google-apis.<br>
 
 
 ### IOS
+[![Google Play](http://wzyy2.github.io/hoststool-cpp/data/down.png)](http://wzyy2.github.io/hoststool-cpp/data/hoststool.ipa) 
 
 
 LICENSE
