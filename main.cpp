@@ -31,11 +31,16 @@ int main(int argc, char *argv[])
     q.showNormal();
 #endif
 
+#ifdef Q_OS_ANDROID
+    //It's a trick,block process util get access.
+    system("su");
+#endif
+
 #ifdef ROOTTOOL_NEED
 #if (defined PASSWORD_NEED)
     QInputDialog passbox;
     bool isok;
-    QString passwd = passbox.getText(NULL, QApplication::translate("Util", "Password"),
+    QString passcwd = passbox.getText(NULL, QApplication::translate("Util", "Password"),
                                          QApplication::translate("Util", "Please input your root password,defalut alpine."),
                                          QLineEdit::Normal,
                                          "alpine",

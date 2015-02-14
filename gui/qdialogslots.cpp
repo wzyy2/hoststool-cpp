@@ -163,7 +163,6 @@ void QDialogSlots::on_MakeUTF8_clicked()
  */
 void QDialogSlots::on_Backup_clicked()
 {
-    qDebug()<<111;
     QString filename = backfile_;
     if (QFile::exists(filename)){
         QFile::remove(filename);

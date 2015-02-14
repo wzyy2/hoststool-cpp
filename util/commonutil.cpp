@@ -119,7 +119,7 @@ void CommonUtil::check_privileges(QString &username, bool &flag)
         return;
     }
 #endif
-    
+
     QFile file(p.path);
     if(!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qDebug()<<"Can't open the file!"<<endl;
