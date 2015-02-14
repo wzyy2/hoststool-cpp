@@ -12,7 +12,7 @@ RootTools::RootTools()
 
     shell_.start("su");
     shell_.waitForStarted();
-    shell_.waitForReadyRead(100);
+    shell_.waitForReadyRead(500);
 
     qDebug()<<need_password_;
     if(need_password_){
