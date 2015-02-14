@@ -7,8 +7,8 @@
 #include <QSqlError>
 #include <QSqlDriver>
 
-#define DATAFILE "./hostslist.data"
-#define DATABASE "./hostslist.s3db"
+#define DATAFILE (QString(PATH_PREFIX) + "hostslist.data")
+#define DATABASE (QString(PATH_PREFIX) + "hostslist.s3db")
 
 /**
  * RetrieveData class contains a set of tools to retrieve information from the hosts data file.

@@ -109,7 +109,8 @@ void CommonUtil::check_privileges(QString &username, bool &flag)
         username = "unKnown";
     }
     qDebug()<<"username:"<<username;
-#ifdef Q_OS_ANDROID
+    
+#ifdef ROOTTOOL_NEED
     if(!RootTools::Instance()->check_root()){
         flag = false;
         return;
@@ -118,6 +119,7 @@ void CommonUtil::check_privileges(QString &username, bool &flag)
         return;
     }
 #endif
+    
     QFile file(p.path);
     if(!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qDebug()<<"Can't open the file!"<<endl;
@@ -243,18 +245,22 @@ QStringList CommonUtil::cut_message(QString msg, int cut)
 /**
  * @brief Copys a file to a destination.
  * @param src source
- * @param dist destination
+ * @param dst destination
  * @param remountAsRw remounts the destination as read/write before writing to it
  */
 
-bool CommonUtil::copyFile(QString src, QString dist, bool remountAsRw)
+bool CommonUtil::copyFile(QString src, QString dst)
 {
+#ifdef ROOTTOOL_NEED
 #ifdef Q_OS_ANDROID
-    return RootTools::Instance()->copyFile(src, dist, remountAsRw);
+    //android /system filesystem usually is mount as readonly
+    return RootTools::Instance()->copyFile(src, dst, true);
+#endif
+    return RootTools::Instance()->copyFile(src, dst, false);
 #else
-    if (QFile::exists(dist)){
-        QFile::remove(dist);
+    if (QFile::exists(dst)){
+        QFile::remove(dst);
     }
-    return QFile::copy(src, dist);
+    return QFile::copy(src, dst);
 #endif
 }

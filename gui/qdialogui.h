@@ -1,7 +1,7 @@
 #ifndef QDIALOGUI_H
 #define QDIALOGUI_H
 #include "hoststool.h"
-#include "ui_util_ui.h"
+
 #include "util/retrievedata.h"
 #include "util/commonutil.h"
 
@@ -15,6 +15,11 @@
 #include <QMessageBox>
 #include <QJsonObject>
 
+#if (defined Q_OS_IOS)
+#include "ui_util_ui_ios.h"
+#else
+#include "ui_util_ui.h"
+#endif
 
 namespace Ui {
 class Util;
@@ -66,9 +71,15 @@ public:
     void set_fetch_start_btns();
     void set_fetch_finish_btns(int error = 0);
 
-
+    //url
     QString infofile_;
     QString filename_;
+
+    /**
+     * @brief path to save backup file.
+     */
+    QString backfile_;
+
     /**
      * File name of User Customized Hosts File. Customized
      * hosts would be able to select if this file exists. The default file

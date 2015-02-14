@@ -15,7 +15,7 @@ QSubFetchUpdate::QSubFetchUpdate(QDialogUI *parent):
     QThread(parent)
 {
     url_ = parent->mirrors_[parent->mirror_id_]["update"] + parent->filename_;
-    path_ = QString("./") + parent->filename_;
+    path_ = QString(PATH_PREFIX) + parent->filename_;
     tmp_path_ = path_ + ".download";
     filesize_ = parent->update_["size"].toDouble();
 

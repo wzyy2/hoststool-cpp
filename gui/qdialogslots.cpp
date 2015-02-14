@@ -84,6 +84,7 @@ void QDialogSlots::on_Selection_changed(QListWidgetItem *item)
         int c_id = i;
         QList<QVariant> c = choice_[ip_flag][i];
         if(c[0].toInt() == choice_[ip_flag][func_id][0].toInt()){
+            //check mutex,like goole us and google hk.
             if(mutex.indexOf(c[1].toInt()) >= 0 && funcs_[ip_flag][c_id] == 1){
                 funcs_[ip_flag][c_id] = 0;
             }
@@ -117,10 +118,7 @@ void QDialogSlots::on_Lang_changed(QString lang)
  */
 void QDialogSlots::on_MakeHosts_clicked()
 {
-    QString filename = "hosts.bak";
-    if(platform_ == "OS X"){
-        //filename =   "/Users/" + filename;
-    }
+    QString filename = backfile_;
     if (!QFile::exists(filename)){
         this->info_backup();
         return;
@@ -131,7 +129,6 @@ void QDialogSlots::on_MakeHosts_clicked()
         return;
     }
     if(question_apply()){
-        make_path_ = "./hosts";
         make_hosts("system");
     }else{
         return;
@@ -166,11 +163,8 @@ void QDialogSlots::on_MakeUTF8_clicked()
  */
 void QDialogSlots::on_Backup_clicked()
 {
-    QString filename = "hosts.bak";
-    if(platform_ == "OS X"){
-        //filename =   "/Users/" + filename;
-    }
-
+    qDebug()<<111;
+    QString filename = backfile_;
     if (QFile::exists(filename)){
         QFile::remove(filename);
     }
@@ -188,10 +182,7 @@ void QDialogSlots::on_Restore_clicked()
         warning_permission();
         return;
     }
-    QString filename = "hosts.bak";
-    if(platform_ == "OS X"){
-        //filename =   "/Users/" + filename;
-    }
+    QString filename = backfile_;
     if (!QFile::exists(filename)){
         this->info_nobackup();
         return;

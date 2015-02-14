@@ -16,7 +16,7 @@ MakeHosts::MakeHosts(std::map<int, int> make_cfg_, QString hostname_, QString cu
 
     if(make_mode == "system"){
         eol = sys_eol_;
-        hosts_file = new QFile("hosts");
+        hosts_file = new QFile(make_path_);
 
     }else if(make_mode == "ansi"){
         eol = "\r\n";
@@ -62,6 +62,7 @@ void MakeHosts::get_hosts(std::map<int, int> &make_cfg)  //make_cfg
     for(std::map<int, int>::iterator it=make_cfg.begin(); it!=make_cfg.end();++it){
         int part_id = it->first;
         int mod_cfg = make_cfg[part_id];
+        //check mutex between module.
         if(!RetrieveData::Instance()->chk_mutex(part_id, mod_cfg))
             return;
         QList<int> mods = RetrieveData::Instance()->get_ids(mod_cfg);

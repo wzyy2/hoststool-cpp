@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QTranslator>
+#include <QInputDialog>
 #include <QDebug>
 
 #include "util/roottools.h"
@@ -10,7 +11,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     QDialogSlots q;
 
     //languages can only be set after set QApplication
@@ -24,17 +24,31 @@ int main(int argc, char *argv[])
         q.ui->retranslateUi(&q);
     }
     q.refresh_main();
-    //Check if current session have root privileges
-    q.check_writable();
-
-    RootTools::Instance();
 
 #if (defined USE_MOBILE)
-    q.showMaximized();
+    q.showFullScreen();
 #else
     q.showNormal();
 #endif
 
+#ifdef ROOTTOOL_NEED
+#if (defined PASSWORD_NEED)
+    QInputDialog passbox;
+    bool isok;
+    QString passwd = passbox.getText(NULL, QApplication::translate("Util", "Password"),
+                                         QApplication::translate("Util", "Please input your root password,defalut alpine."),
+                                         QLineEdit::Normal,
+                                         "alpine",
+                                     &isok);
+    if(!isok)
+        exit(0);
+    //ios need password for su
+    RootTools::Configure(passwd, true);
+#endif
+    RootTools::Instance();
+#endif
+    //Check if current session have root privileges
+    q.check_writable();
 
     return a.exec();
 }

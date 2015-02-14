@@ -11,15 +11,19 @@ QDialogUI::QDialogUI(QWidget *parent) :
     plat_flag_ = true;
     writable_ = 0;
     down_flag_ = 0;
-    make_path_ = "./hosts";
+    //url
     infofile_ = "hostsinfo.json";
     filename_ = "hostslist.data";
-    custom_ = "custom.hosts";
+    //file path
+    make_path_ = QString(PATH_PREFIX) + "hosts";
+    backfile_ = QString(PATH_PREFIX) + "hosts.bak";
+    custom_ = QString(PATH_PREFIX) + "custom.hosts";
 
     //Set default UI language
     ui->setupUi(this);
+#ifndef Q_OS_IOS
     this->set_stylesheet();
-
+#endif
     redata_ = RetrieveData::Instance();
 }
 

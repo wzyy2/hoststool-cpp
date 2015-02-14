@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network sql
-android: QT  += androidextras
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Hoststool
@@ -70,7 +70,8 @@ HEADERS  += \
     util/roottools.h
 
 FORMS    += \
-    util_ui.ui
+    util_ui.ui \
+    util_ui_ios.ui
 
 CONFIG += mobility
 MOBILITY = 
@@ -90,16 +91,18 @@ DISTFILES += \
 TRANSLATIONS += en_US.ts \
     zh_CN.ts
 
+BUNDLE_DATA.files = $$PWD/res/img/icons/ios_ic_launcher.png
+QMAKE_BUNDLE_DATA += BUNDLE_DATA
+QMAKE_INFO_PLIST = $$PWD/ios/Info.plist
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 INCLUDEPATH += $$PWD/
 
 DEFINES += QUAZIP_STATIC #HOSTS_TEST
-!android:  DEFINES += HOSTS_TEST
+
 
 #Lib
 !win32 : LIBS += -lz
-
 win32:{
     DEFINES += WIN_ZLIB
 }

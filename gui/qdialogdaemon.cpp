@@ -90,10 +90,7 @@ void QDialogDaemon::fetch_update_after_check()
  */
 QString QDialogDaemon::export_hosts()
 {
-    QString filename = "hosts";
-    if(platform_ == "OS X"){
-        //filename = "/Users/" + filename;
-    }
+    QString filename = QString(PATH_PREFIX) + "hosts";
     QString filepath = QFileDialog::getSaveFileName(this, QApplication::translate("Util", "Export hosts"),
                                                     filename, QApplication::translate("Util", "hosts File"));
     return filepath;
@@ -126,7 +123,7 @@ void QDialogDaemon::make_hosts(QString mode)
  */
 void QDialogDaemon::move_hosts()
 {
-    QString filepath = "hosts";
+    QString filepath = make_path_;
     QString msg = QApplication::translate("Util", "Copying new hosts file to\n %1").arg(hosts_path_);
     set_make_message(msg);
     //due to android need shell to root
@@ -184,8 +181,8 @@ void QDialogDaemon::set_config_bytes(QString mode)
             part_word += part_cfg[j] << j;
         }
         selection[ch_parts[i]] = part_word;
-        make_cfg_ = selection;
     }
+    make_cfg_ = selection;
 }
 
 
@@ -267,7 +264,7 @@ void QDialogDaemon::finish_fetch(int refresh, int error)
     if(error){
         //Error occurred while downloading
         set_down_progress(0, QApplication::translate("Util", "Error"));
-        QFile::remove(filename_);
+        QFile::remove(QString(PATH_PREFIX) + filename_);
         warning_download();
         QString msg_title("Warning");
         QString msg = QApplication::translate("Util", "Incorrect Data file!\n"
@@ -295,9 +292,13 @@ int QDialogDaemon::new_version( )
     QStringList local_tmp = local_ver.split('.');
     QStringList server_tmp = server_ver.split('.');
     for(int i=0; i<local_tmp.size(); i++){
-        if(server_ver[i] > local_ver[i])
+        if(server_tmp.size() <= i)
+            return 0;
+        if(server_tmp[i] > local_tmp[i])
             return 1;
     }
+    if(local_tmp.size() < server_tmp.size())
+        return 1;
     return 0;
 }
 
