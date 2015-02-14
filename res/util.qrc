@@ -18,6 +18,6 @@
         <file>img/buttons/button_utf8_disabled.png</file>
     </qresource>
     <qresource prefix="/icon">
-        <file>img/icons/ic_launcher.png</file>
+        <file>img/icons/ic_launcher..png.png</file>
     </qresource>
 </RCC>
