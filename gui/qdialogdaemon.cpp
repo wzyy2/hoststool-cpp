@@ -74,7 +74,7 @@ void QDialogDaemon::fetch_update()
 void QDialogDaemon::fetch_update_after_check()
 {
     if(update_["version"] == QApplication::translate("Util", "[Error]")){
-        finish_fetch(1, 0);
+        finish_fetch(1, 1);
     }else if(new_version()){
         fetch_update();
     }else{

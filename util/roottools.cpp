@@ -12,7 +12,6 @@ RootTools::RootTools()
 
     shell_.start("su");
     shell_.waitForStarted();
-    qDebug()<<shell_.isWritable();
     shell_.waitForReadyRead(500);
 
     if(need_password_){

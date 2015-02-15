@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 #if (defined PASSWORD_NEED)
     QInputDialog passbox;
     bool isok;
-    QString passcwd = passbox.getText(NULL, QApplication::translate("Util", "Password"),
+    QString passwd = passbox.getText(NULL, QApplication::translate("Util", "Password"),
                                          QApplication::translate("Util", "Please input your root password,defalut alpine."),
                                          QLineEdit::Normal,
                                          "alpine",
