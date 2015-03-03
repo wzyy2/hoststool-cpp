@@ -17,13 +17,13 @@ RootTools::RootTools()
     if(need_password_){
         cmd = password_ + "\n";
         shell_.write(cmd.toStdString().c_str(), cmd.size());
-        shell_.waitForReadyRead(200);
+        shell_.waitForReadyRead(300);
     }
 
     //echo 1 and receive it to check if su works well
     cmd = "echo 1\n";
     shell_.write(cmd.toStdString().c_str(), cmd.size());
-    shell_.waitForReadyRead(100);
+    shell_.waitForReadyRead(2000);
     if(shell_.readAll()[0] == '1')
         if_root = true;
     else
