@@ -31,11 +31,6 @@ int main(int argc, char *argv[])
     q.showNormal();
 #endif
 
-#ifdef Q_OS_ANDROID
-    //It's a trick,block process util get access.
-    system("su");
-#endif
-
 #ifdef ROOTTOOL_NEED
 #if (defined PASSWORD_NEED)
     QInputDialog passbox;
